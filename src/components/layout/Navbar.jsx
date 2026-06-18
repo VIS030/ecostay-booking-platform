@@ -1,132 +1,217 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useTheme } from '../../context/ThemeContext';
-import Button from '../ui/Button';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const navLinks = [
-  { to: '/listings', label: 'Explore' },
-  { to: '/about', label: 'About' },
+  { to: '/listings', label: 'Stays', match: (pathname, search) => pathname === '/listings' && !search.includes('tab=') },
+  { to: '/listings?tab=destinations', label: 'Destinations', match: (pathname, search) => pathname === '/listings' && search.includes('tab=destinations') },
+  { to: '/listings?tab=experiences', label: 'Experiences', match: (pathname, search) => pathname === '/listings' && search.includes('tab=experiences') },
+  { to: '/about', label: 'About', match: (pathname) => pathname === '/about' },
 ];
 
+function HeartIcon({ filled }) {
+  return (
+    <svg
+      viewBox="0 0 32 32"
+      className={`h-4 w-4 ${filled ? 'fill-[#ff385c] stroke-[#ff385c]' : 'fill-none stroke-current stroke-2'}`}
+    >
+      <path d="M16 28c7-4.733 14-10 14-17a6.983 6.983 0 0 0-11-5.708A6.983 6.983 0 0 0 2 11c0 7 7 12.267 14 17z" />
+    </svg>
+  );
+}
+
+function LogoIcon() {
+  return (
+    <svg viewBox="0 0 32 32" className="h-8 w-8 shrink-0 fill-[#ff385c] transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
+      <path d="M16 1c2 0 3.46 1.66 6.84 5.09.86.89 1.74 1.83 2.62 2.81 3.47 3.85 6.54 7.59 6.54 12.1 0 4.51-3.07 8.25-6.54 12.1-.88.98-1.76 1.92-2.62 2.81C19.46 30.34 18 32 16 32s-3.46-1.66-6.84-5.09c-.86-.89-1.74-1.83-2.62-2.81C3.07 21.25 0 17.51 0 13c0-4.51 3.07-8.25 6.54-12.1.88-.98 1.76-1.92 2.62-2.81C12.54 2.66 14 1 16 1z" />
+    </svg>
+  );
+}
+
 export default function Navbar() {
-  const { isDark, toggleTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const linkClass = ({ isActive }) =>
-    `text-sm font-medium transition-colors duration-200 ${
-      isActive
-        ? 'text-brand-600 dark:text-brand-400'
-        : 'text-stone-600 hover:text-brand-600 dark:text-stone-300 dark:hover:text-brand-400'
-    }`;
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname, location.search]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
+
+  const isLinkActive = (link) =>
+    link.match(location.pathname, location.search);
+
+  const desktopLinkClass = (active) =>
+    [
+      'relative rounded-full px-4 py-2.5 text-[15px] font-medium tracking-tight',
+      'transition-all duration-200 ease-out',
+      active
+        ? 'bg-[#f7f7f7] text-[#222222] shadow-[inset_0_0_0_1px_#ebebeb]'
+        : 'text-[#717171] hover:bg-[#f7f7f7] hover:text-[#222222]',
+    ].join(' ');
+
+  const mobileLinkClass = (active) =>
+    [
+      'block rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200',
+      active
+        ? 'bg-[#f7f7f7] text-[#222222]'
+        : 'text-[#717171] hover:bg-[#f7f7f7] hover:text-[#222222]',
+    ].join(' ');
 
   return (
-    <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-white/90 backdrop-blur-md dark:border-stone-800/80 dark:bg-stone-950/90">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <Link to="/" className="group flex items-center gap-2.5" onClick={() => setMobileOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-lg text-white shadow-sm transition-transform group-hover:scale-105">
-            🌿
-          </span>
-          <div className="flex flex-col leading-none">
-            <span className="font-display text-xl font-semibold tracking-tight text-stone-900 dark:text-white">
-              EcoStay
-            </span>
-            <span className="text-[10px] font-medium uppercase tracking-widest text-brand-600 dark:text-brand-400">
-              Eco Tourism
-            </span>
+    <header className="sticky top-0 z-50 border-b border-[#ebebeb] bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/90">
+      <nav className="mx-auto max-w-[1760px] px-4 sm:px-6 lg:px-10">
+        <div className="flex h-[72px] items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="group flex shrink-0 items-center gap-2 transition-opacity duration-200 hover:opacity-90"
+            onClick={() => setMobileOpen(false)}
+          >
+            <LogoIcon />
+            <span className="text-xl font-bold tracking-tight text-[#ff385c]">EcoStay</span>
+          </Link>
+
+          {/* Desktop navigation — centered */}
+          <div className="hidden items-center justify-center gap-1 lg:flex xl:gap-2">
+            {navLinks.map((link) => {
+              const active = isLinkActive(link);
+              return (
+                <NavLink
+                  key={link.label}
+                  to={link.to}
+                  className={desktopLinkClass(active)}
+                  aria-current={active ? 'page' : undefined}
+                >
+                  {link.label}
+                  {active && (
+                    <span className="absolute bottom-1.5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#ff385c] transition-all duration-300" />
+                  )}
+                </NavLink>
+              );
+            })}
           </div>
-        </Link>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <NavLink key={link.to} to={link.to} className={linkClass}>
-              {link.label}
-            </NavLink>
-          ))}
-        </div>
+          {/* Desktop auth */}
+          <div className="hidden items-center justify-end gap-2 lg:flex">
+            <button
+              type="button"
+              onClick={() => navigate('/login')}
+              className="rounded-full px-5 py-2.5 text-sm font-semibold text-[#222222] transition-all duration-200 hover:bg-[#f7f7f7] active:scale-[0.98]"
+            >
+              Log in
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate('/register')}
+              className="rounded-full bg-[#ff385c] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#e31c5f] hover:shadow-md active:scale-[0.98]"
+            >
+              Sign up
+            </button>
+          </div>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <button
-            onClick={toggleTheme}
-            className="rounded-xl p-2.5 text-stone-500 transition-all hover:bg-stone-100 hover:text-stone-800 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-100"
-            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {isDark ? (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            ) : (
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
-          </button>
-          <Button variant="ghost" size="sm" onClick={() => navigate('/login')}>
-            Log in
-          </Button>
-          <Button size="sm" onClick={() => navigate('/register')}>
-            Sign up
-          </Button>
-        </div>
-
-        <div className="flex items-center gap-2 md:hidden">
-          <button
-            onClick={toggleTheme}
-            className="rounded-lg p-2 text-stone-500 dark:text-stone-400"
-            aria-label="Toggle theme"
-          >
-            {isDark ? '☀️' : '🌙'}
-          </button>
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="rounded-lg p-2 text-stone-600 dark:text-stone-300"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? (
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+          {/* Mobile: auth + hamburger */}
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              type="button"
+              onClick={() => navigate('/login')}
+              className="hidden rounded-full px-3 py-2 text-sm font-semibold text-[#222222] transition-colors hover:bg-[#f7f7f7] sm:inline-flex"
+            >
+              Log in
+            </button>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((open) => !open)}
+              className="relative flex h-11 w-11 items-center justify-center rounded-full border border-[#dddddd] bg-white text-[#222222] transition-all duration-200 hover:shadow-md active:scale-95"
+              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileOpen}
+            >
+              <span className="sr-only">{mobileOpen ? 'Close menu' : 'Open menu'}</span>
+              <span className="flex h-4 w-4 flex-col items-center justify-center">
+                <span
+                  className={`block h-0.5 w-4 rounded-full bg-current transition-all duration-300 ${
+                    mobileOpen ? 'translate-y-[3px] rotate-45' : '-translate-y-[3px]'
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 w-4 rounded-full bg-current transition-all duration-300 ${
+                    mobileOpen ? 'opacity-0 scale-0' : 'opacity-100'
+                  }`}
+                />
+                <span
+                  className={`block h-0.5 w-4 rounded-full bg-current transition-all duration-300 ${
+                    mobileOpen ? '-translate-y-[3px] -rotate-45' : 'translate-y-[3px]'
+                  }`}
+                />
+              </span>
+            </button>
+          </div>
         </div>
       </nav>
 
-      {mobileOpen && (
-        <div className="border-t border-stone-200 bg-white px-4 py-4 dark:border-stone-800 dark:bg-stone-950 md:hidden">
-          <div className="flex flex-col gap-3">
-            {navLinks.map((link) => (
+      {/* Mobile menu */}
+      <div
+        className={`overflow-hidden border-t border-[#ebebeb] bg-white transition-all duration-300 ease-out lg:hidden ${
+          mobileOpen ? 'max-h-[520px] opacity-100' : 'max-h-0 opacity-0 border-t-transparent'
+        }`}
+      >
+        <div className="space-y-1 px-4 py-4 sm:px-6">
+          {navLinks.map((link) => {
+            const active = isLinkActive(link);
+            return (
               <NavLink
-                key={link.to}
+                key={link.label}
                 to={link.to}
-                className={linkClass}
+                className={mobileLinkClass(active)}
+                aria-current={active ? 'page' : undefined}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </NavLink>
-            ))}
-            <Link
-              to="/dashboard"
-              className="text-sm font-medium text-stone-600 dark:text-stone-300"
-              onClick={() => setMobileOpen(false)}
+            );
+          })}
+
+          <div className="mt-4 grid gap-2 border-t border-[#ebebeb] pt-4 sm:hidden">
+            <button
+              type="button"
+              onClick={() => {
+                navigate('/login');
+                setMobileOpen(false);
+              }}
+              className="w-full rounded-xl border border-[#dddddd] px-4 py-3 text-sm font-semibold text-[#222222] transition-colors hover:bg-[#f7f7f7]"
             >
-              Dashboard
-            </Link>
-            <hr className="border-stone-200 dark:border-stone-800" />
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" className="flex-1" onClick={() => { navigate('/login'); setMobileOpen(false); }}>
-                Log in
-              </Button>
-              <Button size="sm" className="flex-1" onClick={() => { navigate('/register'); setMobileOpen(false); }}>
-                Sign up
-              </Button>
-            </div>
+              Log in
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                navigate('/register');
+                setMobileOpen(false);
+              }}
+              className="w-full rounded-xl bg-[#ff385c] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#e31c5f]"
+            >
+              Sign up
+            </button>
           </div>
         </div>
+      </div>
+
+      {/* Mobile backdrop */}
+      {mobileOpen && (
+        <button
+          type="button"
+          className="fixed inset-0 top-[72px] z-40 bg-black/20 backdrop-blur-[1px] transition-opacity duration-300 lg:hidden"
+          aria-label="Close menu"
+          onClick={() => setMobileOpen(false)}
+        />
       )}
     </header>
   );
 }
+
+export { HeartIcon };

@@ -1,13 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import SearchBar from '../components/search/SearchBar';
 import PropertyCard from '../components/property/PropertyCard';
 import FilterSidebar from '../components/listings/FilterSidebar';
+import SearchBar from '../components/search/SearchBar';
 import Loader from '../components/ui/Loader';
-import Button from '../components/ui/Button';
 import { propertyService } from '../services/propertyService';
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 5;
 
 export default function ListingsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,6 +14,7 @@ export default function ListingsPage() {
   const [loading, setLoading] = useState(true);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState('recommended');
 
   const [filters, setFilters] = useState({
     search: searchParams.get('search') || '',
@@ -29,13 +29,16 @@ export default function ListingsPage() {
   const fetchProperties = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await propertyService.getAll(filters);
+      let data = await propertyService.getAll(filters);
+      if (sortBy === 'price-low') data = [...data].sort((a, b) => a.price - b.price);
+      if (sortBy === 'price-high') data = [...data].sort((a, b) => b.price - a.price);
+      if (sortBy === 'rating') data = [...data].sort((a, b) => b.rating - a.rating);
       setProperties(data);
       setCurrentPage(1);
     } finally {
       setLoading(false);
     }
-  }, [filters]);
+  }, [filters, sortBy]);
 
   useEffect(() => {
     fetchProperties();
@@ -57,125 +60,108 @@ export default function ListingsPage() {
   };
 
   const handleClearFilters = () => {
-    const cleared = {
-      search: '',
-      category: '',
-      minPrice: '',
-      maxPrice: '',
-      minRating: '',
-      guests: '',
-      amenities: [],
-    };
-    setFilters(cleared);
+    setFilters({ search: '', category: '', minPrice: '', maxPrice: '', minRating: '', guests: '', amenities: [] });
     setSearchParams({});
   };
 
-  const handleSearch = ({ location }) => {
-    handleFilterChange({ ...filters, search: location });
-  };
-
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <div className="mb-8">
-        <h1 className="font-display text-3xl font-semibold text-stone-900 dark:text-stone-100">
-          Explore eco stays
-        </h1>
-        <p className="mt-2 text-stone-600 dark:text-stone-400">
-          {properties.length} sustainable accommodations found
-        </p>
+    <div className="min-h-screen bg-[#f7f7f7]">
+      {/* Agoda-style search header */}
+      <div className="bg-[#2068a2] px-4 py-6 md:px-10">
+        <div className="mx-auto max-w-[1200px]">
+          <p className="mb-1 text-sm text-white/80">EcoStay / Search results</p>
+          <h1 className="mb-4 text-2xl font-bold text-white">
+            {filters.search || filters.category || 'All eco-friendly stays'}
+          </h1>
+          <SearchBar variant="agoda" />
+        </div>
       </div>
 
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <SearchBar
-          variant="compact"
-          defaultLocation={filters.search}
-          onSearch={handleSearch}
-          className="flex-1 max-w-xl"
-        />
-        <Button
-          variant="outline"
-          size="sm"
-          className="lg:hidden"
-          onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-        >
-          {mobileFiltersOpen ? 'Hide filters' : 'Show filters'}
-        </Button>
-      </div>
-
-      <div className="flex gap-8">
-        <div
-          className={`w-full shrink-0 lg:block lg:w-72 ${
-            mobileFiltersOpen ? 'block' : 'hidden'
-          }`}
-        >
-          <div className="sticky top-24 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-stone-200/80 dark:bg-stone-900 dark:ring-stone-800">
-            <FilterSidebar
-              filters={filters}
-              onChange={handleFilterChange}
-              onClear={handleClearFilters}
-            />
+      <div className="mx-auto max-w-[1200px] px-4 py-6 md:px-0">
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm text-[#717171]">
+            <span className="font-bold text-[#222222]">{properties.length}</span> properties found
+          </p>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
+              className="rounded border border-[#dddddd] bg-white px-4 py-2 text-sm font-semibold lg:hidden"
+            >
+              Filters
+            </button>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              className="rounded border border-[#dddddd] bg-white px-4 py-2 text-sm"
+            >
+              <option value="recommended">Sort: Recommended</option>
+              <option value="price-low">Price: Low to high</option>
+              <option value="price-high">Price: High to low</option>
+              <option value="rating">Guest rating</option>
+            </select>
           </div>
         </div>
 
-        <div className="flex-1">
-          {loading ? (
-            <div className="flex min-h-[40vh] items-center justify-center">
-              <Loader size="lg" />
+        <div className="flex gap-6">
+          <aside className={`w-full shrink-0 lg:block lg:w-[260px] ${mobileFiltersOpen ? 'block' : 'hidden'}`}>
+            <div className="sticky top-24 rounded-lg border border-[#dddddd] bg-white p-5">
+              <FilterSidebar filters={filters} onChange={handleFilterChange} onClear={handleClearFilters} />
             </div>
-          ) : paginatedProperties.length === 0 ? (
-            <div className="flex min-h-[40vh] flex-col items-center justify-center text-center">
-              <span className="text-5xl">🏕️</span>
-              <h2 className="mt-4 text-xl font-semibold text-stone-900 dark:text-stone-100">
-                No stays found
-              </h2>
-              <p className="mt-2 text-stone-500">Try adjusting your filters or search terms</p>
-              <Button className="mt-4" variant="outline" onClick={handleClearFilters}>
-                Clear filters
-              </Button>
-            </div>
-          ) : (
-            <>
-              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                {paginatedProperties.map((property) => (
-                  <PropertyCard key={property.id} property={property} />
-                ))}
-              </div>
+          </aside>
 
-              {totalPages > 1 && (
-                <div className="mt-10 flex items-center justify-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    disabled={currentPage === 1}
-                    onClick={() => setCurrentPage((p) => p - 1)}
-                  >
-                    Previous
-                  </Button>
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`flex h-10 w-10 items-center justify-center rounded-xl text-sm font-medium transition-colors ${
-                        currentPage === page
-                          ? 'bg-brand-600 text-white'
-                          : 'text-stone-600 hover:bg-stone-100 dark:text-stone-400 dark:hover:bg-stone-800'
-                      }`}
-                    >
-                      {page}
-                    </button>
+          <div className="min-w-0 flex-1">
+            {loading ? (
+              <div className="flex min-h-[40vh] items-center justify-center">
+                <Loader size="lg" />
+              </div>
+            ) : paginatedProperties.length === 0 ? (
+              <div className="rounded-lg border border-[#dddddd] bg-white p-12 text-center">
+                <h2 className="text-xl font-bold text-[#222222]">No properties match your search</h2>
+                <p className="mt-2 text-[#717171]">Try different dates or filters</p>
+                <button onClick={handleClearFilters} className="mt-4 text-sm font-semibold text-[#2068a2] underline">
+                  Clear all filters
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="space-y-4">
+                  {paginatedProperties.map((property) => (
+                    <PropertyCard key={property.id} property={property} variant="agoda" />
                   ))}
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    disabled={currentPage === totalPages}
-                    onClick={() => setCurrentPage((p) => p + 1)}
-                  >
-                    Next
-                  </Button>
                 </div>
-              )}
-            </>
-          )}
+
+                {totalPages > 1 && (
+                  <div className="mt-8 flex items-center justify-center gap-2">
+                    <button
+                      disabled={currentPage === 1}
+                      onClick={() => setCurrentPage((p) => p - 1)}
+                      className="rounded border border-[#dddddd] bg-white px-4 py-2 text-sm font-semibold disabled:opacity-40"
+                    >
+                      Previous
+                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`flex h-10 w-10 items-center justify-center rounded text-sm font-bold ${
+                          currentPage === page ? 'bg-[#2068a2] text-white' : 'border border-[#dddddd] bg-white text-[#222222]'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                    <button
+                      disabled={currentPage === totalPages}
+                      onClick={() => setCurrentPage((p) => p + 1)}
+                      className="rounded border border-[#dddddd] bg-white px-4 py-2 text-sm font-semibold disabled:opacity-40"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

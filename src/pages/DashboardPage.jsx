@@ -6,9 +6,9 @@ import Button from '../components/ui/Button';
 import { dashboardService } from '../services/propertyService';
 
 const statusStyles = {
-  confirmed: 'bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200',
-  upcoming: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
-  completed: 'bg-stone-100 text-stone-600 dark:bg-stone-800 dark:text-stone-300',
+  confirmed: 'bg-[#e8f2fa] text-[#2068a2]',
+  upcoming: 'bg-[#fff0f3] text-[#ff385c]',
+  completed: 'bg-[#f7f7f7] text-[#717171]',
 };
 
 export default function DashboardPage() {
@@ -49,54 +49,52 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      {/* Profile Section */}
-      <div className="mb-10 overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-200/80 dark:bg-stone-900 dark:ring-stone-800">
-        <div className="h-32 bg-gradient-to-r from-brand-600 to-brand-800" />
+    <div className="mx-auto max-w-[1120px] px-6 py-8 md:px-10">
+      <div className="mb-10 overflow-hidden rounded-xl border border-[#dddddd] bg-white">
+        <div className="h-28 bg-[#222222]" />
         <div className="relative px-6 pb-6">
           <img
             src={user.avatar}
             alt={user.name}
-            className="-mt-12 h-24 w-24 rounded-2xl border-4 border-white object-cover shadow-lg dark:border-stone-900"
+            className="-mt-12 h-24 w-24 rounded-full border-4 border-white object-cover shadow-lg"
           />
           <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h1 className="text-2xl font-semibold text-stone-900 dark:text-stone-100">{user.name}</h1>
-              <p className="text-stone-500 dark:text-stone-400">{user.email}</p>
-              <p className="mt-1 text-sm text-stone-600 dark:text-stone-400">
+              <h1 className="text-2xl font-semibold text-[#222222]">{user.name}</h1>
+              <p className="text-[#717171]">{user.email}</p>
+              <p className="mt-1 text-sm text-[#717171]">
                 {user.location} · Member since {new Date(user.memberSince).getFullYear()}
               </p>
             </div>
             <Button variant="outline" size="sm">Edit profile</Button>
           </div>
-          <p className="mt-4 text-sm text-stone-600 dark:text-stone-400">{user.bio}</p>
+          <p className="mt-4 text-sm text-[#717171]">{user.bio}</p>
           <div className="mt-6 flex gap-8">
             <div className="text-center">
-              <p className="text-2xl font-bold text-brand-600 dark:text-brand-400">{user.stats.trips}</p>
-              <p className="text-xs text-stone-500">Trips</p>
+              <p className="text-2xl font-bold text-[#ff385c]">{user.stats.trips}</p>
+              <p className="text-xs text-[#717171]">Trips</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-brand-600 dark:text-brand-400">{user.stats.reviews}</p>
-              <p className="text-xs text-stone-500">Reviews</p>
+              <p className="text-2xl font-bold text-[#ff385c]">{user.stats.reviews}</p>
+              <p className="text-xs text-[#717171]">Reviews</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-brand-600 dark:text-brand-400">{user.stats.wishlist}</p>
-              <p className="text-xs text-stone-500">Saved</p>
+              <p className="text-2xl font-bold text-[#ff385c]">{user.stats.wishlist}</p>
+              <p className="text-xs text-[#717171]">Saved</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="mb-6 flex gap-2 overflow-x-auto border-b border-stone-200 dark:border-stone-800">
+      <div className="mb-6 flex gap-2 overflow-x-auto border-b border-[#dddddd]">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`shrink-0 border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
+            className={`shrink-0 border-b-2 px-4 py-3 text-sm font-semibold transition-colors ${
               activeTab === tab.id
-                ? 'border-brand-600 text-brand-600 dark:border-brand-400 dark:text-brand-400'
-                : 'border-transparent text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200'
+                ? 'border-[#222222] text-[#222222]'
+                : 'border-transparent text-[#717171] hover:text-[#222222]'
             }`}
           >
             {tab.label} ({tab.count})
@@ -110,7 +108,7 @@ export default function DashboardPage() {
           {bookings.map((booking) => (
             <div
               key={booking.id}
-              className="flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-stone-200/80 sm:flex-row dark:bg-stone-900 dark:ring-stone-800"
+              className="flex flex-col gap-4 rounded-xl border border-[#dddddd] bg-white p-4 sm:flex-row"
             >
               <img
                 src={booking.propertyImage}
@@ -120,20 +118,20 @@ export default function DashboardPage() {
               <div className="flex flex-1 flex-col justify-between">
                 <div>
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-semibold text-stone-900 dark:text-stone-100">
+                    <h3 className="font-semibold text-[#222222]">
                       {booking.propertyTitle}
                     </h3>
                     <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold capitalize ${statusStyles[booking.status]}`}>
                       {booking.status}
                     </span>
                   </div>
-                  <p className="mt-1 text-sm text-stone-500">{booking.location}</p>
-                  <p className="mt-2 text-sm text-stone-600 dark:text-stone-400">
+                  <p className="mt-1 text-sm text-[#717171]">{booking.location}</p>
+                  <p className="mt-2 text-sm text-[#717171]">
                     {booking.checkIn} → {booking.checkOut} · {booking.guests} guests
                   </p>
                 </div>
                 <div className="mt-3 flex items-center justify-between">
-                  <span className="font-semibold text-stone-900 dark:text-stone-100">
+                  <span className="font-semibold text-[#222222]">
                     ${booking.total} total
                   </span>
                   <Link to={`/properties/${booking.propertyId}`}>
@@ -154,7 +152,7 @@ export default function DashboardPage() {
               <PropertyCard key={property.id} property={property} />
             ))
           ) : (
-            <p className="col-span-full text-center text-stone-500">Your wishlist is empty</p>
+            <p className="col-span-full text-center text-[#717171]">Your wishlist is empty</p>
           )}
         </div>
       )}
@@ -165,14 +163,14 @@ export default function DashboardPage() {
           {activity.map((item) => (
             <div
               key={item.id}
-              className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-stone-200/80 dark:bg-stone-900 dark:ring-stone-800"
+              className="flex items-center gap-4 rounded-xl border border-[#dddddd] bg-white p-4"
             >
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 text-lg dark:bg-brand-950">
-                {item.icon}
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f7f7f7] text-xs font-bold uppercase text-[#2068a2]">
+                {item.type.slice(0, 2)}
               </span>
               <div className="flex-1">
-                <p className="text-sm font-medium text-stone-800 dark:text-stone-200">{item.message}</p>
-                <p className="text-xs text-stone-500">{item.date}</p>
+                <p className="text-sm font-medium text-[#222222]">{item.message}</p>
+                <p className="text-xs text-[#717171]">{item.date}</p>
               </div>
             </div>
           ))}

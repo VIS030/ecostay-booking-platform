@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import ChatWidget from '../components/chat/ChatWidget';
 import HomePage from '../pages/HomePage';
 import ListingsPage from '../pages/ListingsPage';
 import PropertyDetailsPage from '../pages/PropertyDetailsPage';
@@ -14,8 +15,9 @@ function Layout({ children, showFooter = true }) {
   return (
     <>
       <Navbar />
-      <main className="min-h-[calc(100vh-80px)]">{children}</main>
+      <main>{children}</main>
       {showFooter && <Footer />}
+      <ChatWidget />
     </>
   );
 }
@@ -23,70 +25,14 @@ function Layout({ children, showFooter = true }) {
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <Layout>
-            <HomePage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/listings"
-        element={
-          <Layout>
-            <ListingsPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/properties/:id"
-        element={
-          <Layout>
-            <PropertyDetailsPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/login"
-        element={
-          <Layout showFooter={false}>
-            <LoginPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/register"
-        element={
-          <Layout showFooter={false}>
-            <RegisterPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/dashboard"
-        element={
-          <Layout>
-            <DashboardPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="/about"
-        element={
-          <Layout>
-            <AboutPage />
-          </Layout>
-        }
-      />
-      <Route
-        path="*"
-        element={
-          <Layout>
-            <NotFoundPage />
-          </Layout>
-        }
-      />
+      <Route path="/" element={<Layout><HomePage /></Layout>} />
+      <Route path="/listings" element={<Layout><ListingsPage /></Layout>} />
+      <Route path="/properties/:id" element={<Layout><PropertyDetailsPage /></Layout>} />
+      <Route path="/login" element={<Layout showFooter={false}><LoginPage /></Layout>} />
+      <Route path="/register" element={<Layout showFooter={false}><RegisterPage /></Layout>} />
+      <Route path="/dashboard" element={<Layout><DashboardPage /></Layout>} />
+      <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+      <Route path="*" element={<Layout><NotFoundPage /></Layout>} />
     </Routes>
   );
 }

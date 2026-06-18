@@ -1,27 +1,13 @@
 export default function Loader({ size = 'md', className = '', label = 'Loading...' }) {
-  const sizes = {
-    sm: 'h-5 w-5',
-    md: 'h-8 w-8',
-    lg: 'h-12 w-12',
-  };
+  const sizes = { sm: 'h-5 w-5', md: 'h-8 w-8', lg: 'h-12 w-12' };
 
   return (
     <div className={`flex flex-col items-center justify-center gap-3 ${className}`} role="status">
-      <svg
-        className={`animate-spin text-brand-600 dark:text-brand-400 ${sizes[size]}`}
-        viewBox="0 0 24 24"
-        fill="none"
-      >
+      <svg className={`animate-spin text-[#ff385c] ${sizes[size]}`} viewBox="0 0 24 24" fill="none">
         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-        />
+        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
       </svg>
-      {label && (
-        <span className="text-sm text-stone-500 dark:text-stone-400">{label}</span>
-      )}
+      {label && <span className="text-sm text-[#717171]">{label}</span>}
     </div>
   );
 }

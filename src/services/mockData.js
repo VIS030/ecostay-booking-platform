@@ -557,9 +557,9 @@ export const wishlist = [
 ];
 
 export const recentActivity = [
-  { id: 'a1', type: 'booking', message: 'Confirmed booking at Canopy Rainforest Lodge', date: '2026-06-10', icon: '📅' },
-  { id: 'a2', type: 'review', message: 'Left a 5-star review for Alpine Meadow Chalet', date: '2026-01-05', icon: '⭐' },
-  { id: 'a3', type: 'wishlist', message: 'Added Fjord View Eco Cabin to wishlist', date: '2026-05-01', icon: '❤️' },
-  { id: 'a4', type: 'search', message: 'Searched for stays in Costa Rica', date: '2026-05-28', icon: '🔍' },
-  { id: 'a5', type: 'profile', message: 'Updated profile information', date: '2026-04-15', icon: '👤' },
+  { id: 'a1', type: 'booking', message: 'Confirmed booking at Canopy Rainforest Lodge', date: '2026-06-10' },
+  { id: 'a2', type: 'review', message: 'Left a 5-star review for Alpine Meadow Chalet', date: '2026-01-05' },
+  { id: 'a3', type: 'wishlist', message: 'Added Fjord View Eco Cabin to wishlist', date: '2026-05-01' },
+  { id: 'a4', type: 'search', message: 'Searched for stays in Costa Rica', date: '2026-05-28' },
+  { id: 'a5', type: 'profile', message: 'Updated profile information', date: '2026-04-15' },
 ];

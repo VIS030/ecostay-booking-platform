@@ -3,30 +3,24 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand-50: #ecfdf5;
-  --color-brand-100: #d1fae5;
-  --color-brand-200: #a7f3d0;
-  --color-brand-300: #6ee7b7;
-  --color-brand-400: #34d399;
-  --color-brand-500: #10b981;
-  --color-brand-600: #059669;
-  --color-brand-700: #047857;
-  --color-brand-800: #065f46;
-  --color-brand-900: #064e3b;
+  /* Airbnb Rausch */
+  --color-primary: #ff385c;
+  --color-primary-hover: #e31c5f;
+  --color-primary-light: #fff0f3;
 
-  --color-earth-50: #faf7f2;
-  --color-earth-100: #f0ebe0;
-  --color-earth-200: #e0d5c4;
-  --color-earth-300: #c9b89a;
-  --color-earth-400: #b09874;
-  --color-earth-500: #96795a;
-  --color-earth-600: #7a6149;
-  --color-earth-700: #624d3c;
-  --color-earth-800: #524033;
-  --color-earth-900: #45362c;
+  /* Agoda blue */
+  --color-agoda: #2068a2;
+  --color-agoda-hover: #174d78;
+  --color-agoda-light: #e8f2fa;
+  --color-agoda-accent: #5392f9;
+
+  --color-text: #222222;
+  --color-text-secondary: #717171;
+  --color-border: #dddddd;
+  --color-surface: #ffffff;
+  --color-bg: #f7f7f7;
 }
 
 @layer base {
@@ -35,21 +29,26 @@
   }
 
   body {
-    @apply bg-earth-50 text-stone-800 antialiased dark:bg-stone-950 dark:text-stone-100;
+    @apply bg-white text-[#222222] antialiased;
     font-family: var(--font-sans);
   }
 
+  .dark body {
+    @apply bg-[#0f0f0f] text-[#f0f0f0];
+  }
+
   ::selection {
-    @apply bg-brand-200 text-brand-900 dark:bg-brand-800 dark:text-brand-100;
+    background: #ffe0e6;
+    color: #222;
   }
 }
 
 @layer utilities {
-  .font-display {
-    font-family: var(--font-display);
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
-
-  .text-balance {
-    text-wrap: balance;
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

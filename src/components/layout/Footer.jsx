@@ -1,85 +1,48 @@
 import { Link } from 'react-router-dom';
 
-const footerLinks = {
-  explore: [
-    { label: 'All Listings', to: '/listings' },
-    { label: 'Mountain Retreats', to: '/listings?category=Mountain+Cabin' },
-    { label: 'Beach Lodges', to: '/listings?category=Beach+Bungalow' },
-    { label: 'Farm Stays', to: '/listings?category=Farm+Stay' },
-  ],
-  company: [
-    { label: 'About Us', to: '/about' },
-    { label: 'Sustainability', to: '/about#sustainability' },
-    { label: 'Careers', to: '/about#careers' },
-    { label: 'Press', to: '/about#press' },
-  ],
-  support: [
-    { label: 'Help Center', to: '/about#help' },
-    { label: 'Safety', to: '/about#safety' },
-    { label: 'Cancellation', to: '/about#cancellation' },
-    { label: 'Contact', to: '/about#contact' },
-  ],
-};
-
 export default function Footer() {
   return (
-    <footer className="border-t border-stone-200 bg-stone-900 text-stone-300 dark:border-stone-800">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
-          <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-lg text-white">
-                🌿
-              </span>
-              <span className="font-display text-xl font-semibold text-white">EcoStay</span>
-            </Link>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-stone-400">
-              Discover verified eco-friendly homestays and sustainable travel experiences.
-              Travel beautifully, tread lightly.
-            </p>
-            <div className="mt-6 flex gap-4">
-              {['𝕏', 'in', 'f', '📷'].map((icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-stone-800 text-sm transition-colors hover:bg-brand-600 hover:text-white"
-                  aria-label="Social link"
-                >
-                  {icon}
-                </a>
-              ))}
-            </div>
+    <footer className="border-t border-[#dddddd] bg-[#f7f7f7]">
+      <div className="mx-auto max-w-[1760px] px-6 py-12 md:px-10">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[#222222]">Support</h3>
+            <ul className="space-y-3 text-sm text-[#717171]">
+              <li><Link to="/about#help" className="hover:underline">Help Center</Link></li>
+              <li><Link to="/about#contact" className="hover:underline">Contact us</Link></li>
+              <li><a href="#" className="hover:underline">Cancellation options</a></li>
+            </ul>
           </div>
-
-          {Object.entries(footerLinks).map(([section, links]) => (
-            <div key={section}>
-              <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-white">
-                {section}
-              </h3>
-              <ul className="space-y-3">
-                {links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      to={link.to}
-                      className="text-sm text-stone-400 transition-colors hover:text-brand-400"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div>
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[#222222]">Hosting</h3>
+            <ul className="space-y-3 text-sm text-[#717171]">
+              <li><a href="#" className="hover:underline">List your property</a></li>
+              <li><a href="#" className="hover:underline">Host resources</a></li>
+              <li><Link to="/about#sustainability" className="hover:underline">Eco standards</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[#222222]">EcoStay</h3>
+            <ul className="space-y-3 text-sm text-[#717171]">
+              <li><Link to="/about" className="hover:underline">About</Link></li>
+              <li><Link to="/listings" className="hover:underline">All stays</Link></li>
+              <li><a href="#" className="hover:underline">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-[#222222]">Legal</h3>
+            <ul className="space-y-3 text-sm text-[#717171]">
+              <li><a href="#" className="hover:underline">Privacy</a></li>
+              <li><a href="#" className="hover:underline">Terms</a></li>
+              <li><a href="#" className="hover:underline">Sitemap</a></li>
+            </ul>
+          </div>
         </div>
-
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-stone-800 pt-8 sm:flex-row">
-          <p className="text-sm text-stone-500">
-            © {new Date().getFullYear()} EcoStay. All rights reserved.
-          </p>
-          <div className="flex gap-6 text-sm text-stone-500">
-            <a href="#" className="hover:text-stone-300">Privacy</a>
-            <a href="#" className="hover:text-stone-300">Terms</a>
-            <a href="#" className="hover:text-stone-300">Cookies</a>
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-[#dddddd] pt-8 sm:flex-row">
+          <p className="text-sm text-[#717171]">© {new Date().getFullYear()} EcoStay, Inc.</p>
+          <div className="flex gap-4 text-sm text-[#717171]">
+            <span>English (US)</span>
+            <span>$ USD</span>
           </div>
         </div>
       </div>
