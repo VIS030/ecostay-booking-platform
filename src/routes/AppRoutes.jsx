@@ -9,6 +9,8 @@ import LoginPage from '../pages/LoginPage';
 import RegisterPage from '../pages/RegisterPage';
 import DashboardPage from '../pages/DashboardPage';
 import AboutPage from '../pages/AboutPage';
+import DestinationsPage from '../pages/DestinationsPage';
+import ExperiencesPage from '../pages/ExperiencesPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 function Layout({ children, showFooter = true }) {
@@ -27,6 +29,8 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout><HomePage /></Layout>} />
       <Route path="/listings" element={<Layout><ListingsPage /></Layout>} />
+      <Route path="/destinations" element={<Layout><DestinationsPage /></Layout>} />
+      <Route path="/experiences" element={<Layout><ExperiencesPage /></Layout>} />
       <Route path="/properties/:id" element={<Layout><PropertyDetailsPage /></Layout>} />
       <Route path="/login" element={<Layout showFooter={false}><LoginPage /></Layout>} />
       <Route path="/register" element={<Layout showFooter={false}><RegisterPage /></Layout>} />

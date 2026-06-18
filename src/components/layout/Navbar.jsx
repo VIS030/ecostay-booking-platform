@@ -2,9 +2,9 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const navLinks = [
-  { to: '/listings', label: 'Stays', match: (pathname, search) => pathname === '/listings' && !search.includes('tab=') },
-  { to: '/listings?tab=destinations', label: 'Destinations', match: (pathname, search) => pathname === '/listings' && search.includes('tab=destinations') },
-  { to: '/listings?tab=experiences', label: 'Experiences', match: (pathname, search) => pathname === '/listings' && search.includes('tab=experiences') },
+  { to: '/listings', label: 'Stays', match: (pathname) => pathname === '/listings' },
+  { to: '/destinations', label: 'Destinations', match: (pathname) => pathname === '/destinations' },
+  { to: '/experiences', label: 'Experiences', match: (pathname) => pathname === '/experiences' },
   { to: '/about', label: 'About', match: (pathname) => pathname === '/about' },
 ];
 
@@ -43,8 +43,7 @@ export default function Navbar() {
     };
   }, [mobileOpen]);
 
-  const isLinkActive = (link) =>
-    link.match(location.pathname, location.search);
+  const isLinkActive = (link) => link.match(location.pathname);
 
   const desktopLinkClass = (active) =>
     [

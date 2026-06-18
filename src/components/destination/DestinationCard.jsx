@@ -1,27 +1,42 @@
 import { Link } from 'react-router-dom';
+import Button from '../ui/Button';
 
 export default function DestinationCard({ destination, className = '' }) {
   return (
-    <Link
-      to={`/listings?search=${encodeURIComponent(destination.name)}`}
-      className={`group relative block overflow-hidden rounded-2xl ${className}`}
+    <article
+      className={`group flex flex-col overflow-hidden rounded-xl border border-[#dddddd] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.12)] ${className}`}
     >
-      <div className="aspect-[3/4] overflow-hidden sm:aspect-[4/5]">
+      <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={destination.image}
           alt={destination.name}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
+        {destination.popular && (
+          <span className="absolute left-3 top-3 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-[#222222] shadow-sm">
+            Popular
+          </span>
+        )}
       </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/20 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 p-5 text-white">
-        <h3 className="font-display text-xl font-semibold">{destination.name}</h3>
-        <p className="mt-1 text-sm text-stone-200">{destination.description}</p>
-        <p className="mt-2 text-xs font-medium uppercase tracking-wider text-brand-300">
-          {destination.propertyCount} stays
+
+      <div className="flex flex-1 flex-col p-5">
+        <p className="text-xs font-medium uppercase tracking-wide text-[#717171]">
+          {destination.region}
         </p>
+        <h3 className="mt-1 text-xl font-semibold text-[#222222]">{destination.name}</h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-[#717171]">
+          {destination.description}
+        </p>
+        <p className="mt-3 text-sm font-medium text-[#222222]">
+          {destination.stayCount} eco stays available
+        </p>
+        <Link to={`/listings?search=${encodeURIComponent(destination.name)}`} className="mt-4">
+          <Button variant="primary" size="md" className="w-full">
+            Explore
+          </Button>
+        </Link>
       </div>
-    </Link>
+    </article>
   );
 }
