@@ -67,10 +67,10 @@ export default function ListingsPage() {
   return (
     <div className="min-h-screen bg-[#f7f7f7]">
       {/* Agoda-style search header */}
-      <div className="bg-white border-b border-[#dddddd] px-4 py-6 md:px-10">
+      <div className="bg-[#2068a2] px-4 py-6 md:px-10">
         <div className="mx-auto max-w-[1200px]">
-          <p className="mb-1 text-sm text-[#717171]">EcoStay / Search results</p>
-          <h1 className="mb-4 text-2xl font-bold text-[#222222]">
+          <p className="mb-1 text-sm text-white/80">EcoStay / Search results</p>
+          <h1 className="mb-4 text-2xl font-bold text-white">
             {filters.search || filters.category || 'All eco-friendly stays'}
           </h1>
           <SearchBar variant="agoda" />

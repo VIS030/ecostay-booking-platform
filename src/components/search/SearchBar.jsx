@@ -49,7 +49,7 @@ export default function SearchBar({
             <option key={n} value={n}>{n} guest{n > 1 ? 's' : ''}</option>
           ))}
         </select>
-        <button type="submit" className="rounded-lg bg-[#F59E0B] px-8 py-3.5 text-sm font-bold text-white hover:bg-[#D97706]">
+        <button type="submit" className="rounded-lg bg-[#ff6600] px-8 py-3.5 text-sm font-bold text-white hover:bg-[#e55c00]">
           SEARCH
         </button>
       </form>

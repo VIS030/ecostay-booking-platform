@@ -2,7 +2,7 @@ const variants = {
   primary:
     'bg-[#2068a2] text-white hover:bg-[#174d78] shadow-sm',
   agoda:
-    'bg-[#F59E0B] text-white hover:bg-[#D97706] shadow-sm',
+    'bg-[#ff6600] text-white hover:bg-[#e55c00] shadow-sm',
   secondary:
     'bg-[#2068a2] text-white hover:bg-[#174d78]',
   outline:

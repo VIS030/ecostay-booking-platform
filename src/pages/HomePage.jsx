@@ -174,7 +174,7 @@ export default function HomePage() {
             <h2 className="mt-1 text-2xl font-bold text-white">Save up to 25% on eco stays this season</h2>
             <p className="mt-1 text-white/80">Book now · Free cancellation on select properties</p>
           </div>
-          <Link to="/listings" className="shrink-0 rounded-lg bg-[#F59E0B] px-8 py-3.5 text-sm font-bold text-white hover:bg-[#D97706]">
+          <Link to="/listings" className="shrink-0 rounded-lg bg-[#ff6600] px-8 py-3.5 text-sm font-bold text-white hover:bg-[#e55c00]">
             FIND DEALS
           </Link>
         </div>
