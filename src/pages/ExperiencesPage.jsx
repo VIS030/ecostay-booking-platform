@@ -60,7 +60,7 @@ export default function ExperiencesPage() {
             />
             <button
               type="submit"
-              className="m-1.5 flex items-center gap-2 rounded-full bg-[#ff385c] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#e31c5f]"
+              className="m-1.5 flex items-center gap-2 rounded-full bg-[#2068a2] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#174d78]"
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -106,7 +106,7 @@ export default function ExperiencesPage() {
               <p className="mt-2 text-[#717171]">Try a different search term</p>
               <button
                 onClick={() => setSearch('')}
-                className="mt-4 text-sm font-semibold text-[#ff385c] underline"
+                className="mt-4 text-sm font-semibold text-[#2068a2] underline"
               >
                 Clear search
               </button>

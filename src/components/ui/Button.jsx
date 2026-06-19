@@ -1,14 +1,14 @@
 const variants = {
   primary:
-    'bg-[#ff385c] text-white hover:bg-[#e31c5f] shadow-sm',
-  agoda:
     'bg-[#2068a2] text-white hover:bg-[#174d78] shadow-sm',
+  agoda:
+    'bg-[#F59E0B] text-white hover:bg-[#D97706] shadow-sm',
   secondary:
-    'bg-[#222222] text-white hover:bg-black',
+    'bg-[#2068a2] text-white hover:bg-[#174d78]',
   outline:
-    'border border-[#222222] text-[#222222] bg-white hover:bg-[#f7f7f7]',
+    'border border-[#2068a2] text-[#2068a2] bg-white hover:bg-[#e8f2fa]',
   ghost:
-    'text-[#222222] hover:bg-[#f7f7f7]',
+    'text-[#222222] hover:text-[#2068a2] hover:bg-[#e8f2fa]',
   danger:
     'bg-red-600 text-white hover:bg-red-700',
 };
@@ -37,7 +37,7 @@ export default function Button({
       className={`
         inline-flex items-center justify-center gap-2
         transition-all duration-150 ease-out
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff385c] focus-visible:ring-offset-2
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2068a2] focus-visible:ring-offset-2
         disabled:opacity-50 disabled:cursor-not-allowed
         ${variants[variant]} ${sizes[size]} ${className}
       `}

@@ -8,7 +8,7 @@ const Input = forwardRef(function Input({ label, error, hint, className = '', co
       <input
         ref={ref}
         id={inputId}
-        className={`w-full rounded-lg border border-[#b0b0b0] px-4 py-3 text-sm text-[#222222] focus:border-[#222222] focus:outline-none focus:ring-1 focus:ring-[#222222] ${error ? 'border-red-500' : ''} ${className}`}
+        className={`w-full rounded-lg border border-[#b0b0b0] px-4 py-3 text-sm text-[#222222] focus:border-[#2068a2] focus:outline-none focus:ring-1 focus:ring-[#2068a2] ${error ? 'border-red-500' : ''} ${className}`}
         {...props}
       />
       {error && <p className="text-xs text-red-500">{error}</p>}

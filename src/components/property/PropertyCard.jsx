@@ -29,7 +29,7 @@ export default function PropertyCard({ property, variant = 'airbnb', className =
             loading="lazy"
           />
           {property.featured && (
-            <span className="absolute left-0 top-3 bg-[#ff6600] px-2 py-1 text-xs font-bold text-white">
+            <span className="absolute left-0 top-3 bg-[#F59E0B] px-2 py-1 text-xs font-bold text-white">
               HOT DEAL
             </span>
           )}
@@ -37,10 +37,10 @@ export default function PropertyCard({ property, variant = 'airbnb', className =
         <div className="flex flex-1 flex-col justify-between p-4 sm:flex-row sm:gap-4">
           <div className="flex-1">
             <Link to={`/properties/${property.slug || property.id}`}>
-              <h3 className="text-lg font-bold text-[#2068a2] hover:underline">{property.title}</h3>
+              <h3 className="text-lg font-bold text-[#222222] hover:text-[#2068a2] hover:underline">{property.title}</h3>
             </Link>
             <p className="mt-1 text-sm text-[#717171]">{locationLabel}</p>
-            <p className="mt-1 text-xs text-[#5392f9]">{property.propertyType}</p>
+            <p className="mt-1 text-xs text-[#717171]">{property.propertyType}</p>
             <div className="mt-3 flex flex-wrap gap-2">
               {property.amenities.slice(0, 4).map((a) => (
                 <span key={a} className="rounded bg-[#f0f0f0] px-2 py-0.5 text-xs text-[#717171]">{a}</span>
@@ -55,7 +55,7 @@ export default function PropertyCard({ property, variant = 'airbnb', className =
           <div className="mt-4 flex shrink-0 flex-col items-end justify-between border-t border-[#eeeeee] pt-4 sm:mt-0 sm:border-0 sm:pt-0 sm:text-right">
             <div>
               <p className="text-xs text-[#717171]">From</p>
-              <p className="text-2xl font-bold text-[#ff6600]">${property.price}</p>
+              <p className="text-2xl font-bold text-[#F59E0B]">${property.price}</p>
               <p className="text-xs text-[#717171]">per night</p>
             </div>
             <Link

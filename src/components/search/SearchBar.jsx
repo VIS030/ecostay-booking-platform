@@ -49,7 +49,7 @@ export default function SearchBar({
             <option key={n} value={n}>{n} guest{n > 1 ? 's' : ''}</option>
           ))}
         </select>
-        <button type="submit" className="rounded-lg bg-[#ff6600] px-8 py-3.5 text-sm font-bold text-white hover:bg-[#e55c00]">
+        <button type="submit" className="rounded-lg bg-[#F59E0B] px-8 py-3.5 text-sm font-bold text-white hover:bg-[#D97706]">
           SEARCH
         </button>
       </form>
@@ -66,7 +66,7 @@ export default function SearchBar({
           placeholder="Search destinations"
           className="flex-1 px-5 py-3 text-sm focus:outline-none"
         />
-        <button type="submit" className="m-1.5 flex items-center gap-2 rounded-full bg-[#ff385c] px-5 py-2 text-sm font-semibold text-white hover:bg-[#e31c5f]">
+        <button type="submit" className="m-1.5 flex items-center gap-2 rounded-full bg-[#2068a2] px-5 py-2 text-sm font-semibold text-white hover:bg-[#174d78]">
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
@@ -118,7 +118,7 @@ export default function SearchBar({
       </div>
       <button
         type="submit"
-        className="ml-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#ff385c] text-white hover:bg-[#e31c5f]"
+        className="ml-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#16A34A] text-white hover:bg-[#14532D]"
         aria-label="Search"
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>

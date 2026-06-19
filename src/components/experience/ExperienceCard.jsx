@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
 
 const difficultyStyles = {
-  Easy: 'bg-[#e8f2fa] text-[#2068a2]',
-  Moderate: 'bg-[#fff8e6] text-[#b45309]',
-  Hard: 'bg-[#fff0f3] text-[#ff385c]',
+  Easy: 'bg-[#DCFCE7] text-[#14532D]',
+  Moderate: 'bg-[#FEF3C7] text-[#B45309]',
+  Hard: 'bg-[#FEE2E2] text-[#991B1B]',
 };
 
 export default function ExperienceCard({ experience, className = '' }) {

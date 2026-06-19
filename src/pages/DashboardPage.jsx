@@ -6,8 +6,8 @@ import Button from '../components/ui/Button';
 import { dashboardService } from '../services/propertyService';
 
 const statusStyles = {
-  confirmed: 'bg-[#e8f2fa] text-[#2068a2]',
-  upcoming: 'bg-[#fff0f3] text-[#ff385c]',
+  confirmed: 'bg-[#DCFCE7] text-[#14532D]',
+  upcoming: 'bg-[#FEF3C7] text-[#B45309]',
   completed: 'bg-[#f7f7f7] text-[#717171]',
 };
 
@@ -71,15 +71,15 @@ export default function DashboardPage() {
           <p className="mt-4 text-sm text-[#717171]">{user.bio}</p>
           <div className="mt-6 flex gap-8">
             <div className="text-center">
-              <p className="text-2xl font-bold text-[#ff385c]">{user.stats.trips}</p>
+              <p className="text-2xl font-bold text-[#2068a2]">{user.stats.trips}</p>
               <p className="text-xs text-[#717171]">Trips</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-[#ff385c]">{user.stats.reviews}</p>
+              <p className="text-2xl font-bold text-[#2068a2]">{user.stats.reviews}</p>
               <p className="text-xs text-[#717171]">Reviews</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-[#ff385c]">{user.stats.wishlist}</p>
+              <p className="text-2xl font-bold text-[#2068a2]">{user.stats.wishlist}</p>
               <p className="text-xs text-[#717171]">Saved</p>
             </div>
           </div>

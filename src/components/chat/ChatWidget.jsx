@@ -74,7 +74,7 @@ export default function ChatWidget() {
                 <div
                   className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                     msg.role === 'user'
-                      ? 'rounded-br-md bg-[#ff385c] text-white'
+                      ? 'rounded-br-md bg-[#2068a2] text-white'
                       : 'rounded-bl-md border border-[#dddddd] bg-white text-[#222222]'
                   }`}
                 >
@@ -121,7 +121,7 @@ export default function ChatWidget() {
               />
               <button
                 type="submit"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ff385c] text-white hover:bg-[#e31c5f]"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2068a2] text-white hover:bg-[#174d78]"
                 aria-label="Send message"
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -138,7 +138,7 @@ export default function ChatWidget() {
         className={`fixed bottom-5 right-4 z-50 flex items-center gap-2 rounded-full shadow-lg transition-all sm:right-6 ${
           open
             ? 'bg-[#222222] px-4 py-3 text-white'
-            : 'bg-[#ff385c] px-5 py-3.5 text-white hover:bg-[#e31c5f] hover:shadow-xl'
+            : 'bg-[#16A34A] px-5 py-3.5 text-white hover:bg-[#14532D] hover:shadow-xl'
         }`}
         aria-label={open ? 'Close assistant' : 'Open travel assistant'}
       >

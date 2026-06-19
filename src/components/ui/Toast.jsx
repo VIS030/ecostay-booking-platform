@@ -1,8 +1,8 @@
 const typeStyles = {
-  success: 'bg-white border-[#dddddd] text-[#222222]',
+  success: 'bg-green-50 border-green-200 text-green-800',
   error: 'bg-red-50 border-red-200 text-red-800',
-  info: 'bg-[#e8f2fa] border-[#2068a2]/30 text-[#222222]',
-  warning: 'bg-amber-50 border-amber-200 text-amber-900',
+  info: 'bg-white border-[#dddddd] text-[#222222]',
+  warning: 'bg-[#FEF3C7] border-[#F59E0B]/40 text-[#92400E]',
 };
 
 export default function Toast({ message, type = 'info', onClose }) {

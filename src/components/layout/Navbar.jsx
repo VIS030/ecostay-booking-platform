@@ -12,7 +12,7 @@ function HeartIcon({ filled }) {
   return (
     <svg
       viewBox="0 0 32 32"
-      className={`h-4 w-4 ${filled ? 'fill-[#ff385c] stroke-[#ff385c]' : 'fill-none stroke-current stroke-2'}`}
+      className={`h-4 w-4 ${filled ? 'fill-[#FF385C] stroke-[#FF385C]' : 'fill-none stroke-current stroke-2'}`}
     >
       <path d="M16 28c7-4.733 14-10 14-17a6.983 6.983 0 0 0-11-5.708A6.983 6.983 0 0 0 2 11c0 7 7 12.267 14 17z" />
     </svg>
@@ -21,7 +21,7 @@ function HeartIcon({ filled }) {
 
 function LogoIcon() {
   return (
-    <svg viewBox="0 0 32 32" className="h-8 w-8 shrink-0 fill-[#ff385c] transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
+    <svg viewBox="0 0 32 32" className="h-8 w-8 shrink-0 fill-[#16A34A] transition-transform duration-300 group-hover:scale-105" aria-hidden="true">
       <path d="M16 1c2 0 3.46 1.66 6.84 5.09.86.89 1.74 1.83 2.62 2.81 3.47 3.85 6.54 7.59 6.54 12.1 0 4.51-3.07 8.25-6.54 12.1-.88.98-1.76 1.92-2.62 2.81C19.46 30.34 18 32 16 32s-3.46-1.66-6.84-5.09c-.86-.89-1.74-1.83-2.62-2.81C3.07 21.25 0 17.51 0 13c0-4.51 3.07-8.25 6.54-12.1.88-.98 1.76-1.92 2.62-2.81C12.54 2.66 14 1 16 1z" />
     </svg>
   );
@@ -51,7 +51,7 @@ export default function Navbar() {
       'transition-all duration-200 ease-out',
       active
         ? 'bg-[#f7f7f7] text-[#222222] shadow-[inset_0_0_0_1px_#ebebeb]'
-        : 'text-[#717171] hover:bg-[#f7f7f7] hover:text-[#222222]',
+        : 'text-[#717171] hover:bg-[#e8f2fa] hover:text-[#2068a2]',
     ].join(' ');
 
   const mobileLinkClass = (active) =>
@@ -59,7 +59,7 @@ export default function Navbar() {
       'block rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200',
       active
         ? 'bg-[#f7f7f7] text-[#222222]'
-        : 'text-[#717171] hover:bg-[#f7f7f7] hover:text-[#222222]',
+        : 'text-[#717171] hover:bg-[#e8f2fa] hover:text-[#2068a2]',
     ].join(' ');
 
   return (
@@ -73,7 +73,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(false)}
           >
             <LogoIcon />
-            <span className="text-xl font-bold tracking-tight text-[#ff385c]">EcoStay</span>
+            <span className="text-xl font-bold tracking-tight text-[#16A34A]">EcoStay</span>
           </Link>
 
           {/* Desktop navigation — centered */}
@@ -89,7 +89,7 @@ export default function Navbar() {
                 >
                   {link.label}
                   {active && (
-                    <span className="absolute bottom-1.5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#ff385c] transition-all duration-300" />
+                    <span className="absolute bottom-1.5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-[#2068a2] transition-all duration-300" />
                   )}
                 </NavLink>
               );
@@ -108,7 +108,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => navigate('/register')}
-              className="rounded-full bg-[#ff385c] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#e31c5f] hover:shadow-md active:scale-[0.98]"
+              className="rounded-full bg-[#16A34A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#14532D] hover:shadow-md active:scale-[0.98]"
             >
               Sign up
             </button>
@@ -192,7 +192,7 @@ export default function Navbar() {
                 navigate('/register');
                 setMobileOpen(false);
               }}
-              className="w-full rounded-xl bg-[#ff385c] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#e31c5f]"
+              className="w-full rounded-xl bg-[#16A34A] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#14532D]"
             >
               Sign up
             </button>
