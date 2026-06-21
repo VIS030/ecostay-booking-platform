@@ -6,9 +6,9 @@ import Button from '../components/ui/Button';
 import { dashboardService } from '../services/propertyService';
 
 const statusStyles = {
-  confirmed: 'bg-[#DCFCE7] text-[#14532D]',
-  upcoming: 'bg-[#FEF3C7] text-[#B45309]',
-  completed: 'bg-[#f7f7f7] text-[#717171]',
+  confirmed: 'bg-[#DCFCE7] dark:bg-green-950/40 text-[#14532D] dark:text-green-300',
+  upcoming: 'bg-[#FEF3C7] dark:bg-amber-950/40 text-[#B45309] dark:text-amber-300',
+  completed: 'bg-[#f7f7f7] dark:bg-slate-800 text-[#717171] dark:text-slate-300',
 };
 
 export default function DashboardPage() {
@@ -49,52 +49,52 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-[1120px] px-6 py-8 md:px-10">
-      <div className="mb-10 overflow-hidden rounded-xl border border-[#dddddd] bg-white">
-        <div className="h-28 bg-[#222222]" />
+    <div className="mx-auto max-w-[1120px] px-6 py-8 md:px-10 dark:text-slate-100">
+      <div className="mb-10 overflow-hidden rounded-xl border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div className="h-28 bg-[#222222] dark:bg-slate-850" />
         <div className="relative px-6 pb-6">
           <img
             src={user.avatar}
             alt={user.name}
-            className="-mt-12 h-24 w-24 rounded-full border-4 border-white object-cover shadow-lg"
+            className="-mt-12 h-24 w-24 rounded-full border-4 border-white dark:border-slate-900 object-cover shadow-lg"
           />
           <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h1 className="text-2xl font-semibold text-[#222222]">{user.name}</h1>
-              <p className="text-[#717171]">{user.email}</p>
-              <p className="mt-1 text-sm text-[#717171]">
+              <h1 className="text-2xl font-semibold text-[#222222] dark:text-white">{user.name}</h1>
+              <p className="text-[#717171] dark:text-slate-400">{user.email}</p>
+              <p className="mt-1 text-sm text-[#717171] dark:text-slate-400">
                 {user.location} · Member since {new Date(user.memberSince).getFullYear()}
               </p>
             </div>
             <Button variant="outline" size="sm">Edit profile</Button>
           </div>
-          <p className="mt-4 text-sm text-[#717171]">{user.bio}</p>
+          <p className="mt-4 text-sm text-[#717171] dark:text-slate-350">{user.bio}</p>
           <div className="mt-6 flex gap-8">
             <div className="text-center">
-              <p className="text-2xl font-bold text-[#2068a2]">{user.stats.trips}</p>
-              <p className="text-xs text-[#717171]">Trips</p>
+              <p className="text-2xl font-bold text-[#2068a2] dark:text-blue-400">{user.stats.trips}</p>
+              <p className="text-xs text-[#717171] dark:text-slate-400">Trips</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-[#2068a2]">{user.stats.reviews}</p>
-              <p className="text-xs text-[#717171]">Reviews</p>
+              <p className="text-2xl font-bold text-[#2068a2] dark:text-blue-400">{user.stats.reviews}</p>
+              <p className="text-xs text-[#717171] dark:text-slate-400">Reviews</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-[#2068a2]">{user.stats.wishlist}</p>
-              <p className="text-xs text-[#717171]">Saved</p>
+              <p className="text-2xl font-bold text-[#2068a2] dark:text-blue-400">{user.stats.wishlist}</p>
+              <p className="text-xs text-[#717171] dark:text-slate-400">Saved</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="mb-6 flex gap-2 overflow-x-auto border-b border-[#dddddd]">
+      <div className="mb-6 flex gap-2 overflow-x-auto border-b border-[#dddddd] dark:border-slate-800">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`shrink-0 border-b-2 px-4 py-3 text-sm font-semibold transition-colors ${
+            className={`shrink-0 border-b-2 px-4 py-3 text-sm font-semibold transition-colors cursor-pointer ${
               activeTab === tab.id
-                ? 'border-[#222222] text-[#222222]'
-                : 'border-transparent text-[#717171] hover:text-[#222222]'
+                ? 'border-[#222222] dark:border-white text-[#222222] dark:text-white'
+                : 'border-transparent text-[#717171] dark:text-slate-400 hover:text-[#222222] dark:hover:text-white'
             }`}
           >
             {tab.label} ({tab.count})
@@ -108,7 +108,7 @@ export default function DashboardPage() {
           {bookings.map((booking) => (
             <div
               key={booking.id}
-              className="flex flex-col gap-4 rounded-xl border border-[#dddddd] bg-white p-4 sm:flex-row"
+              className="flex flex-col gap-4 rounded-xl border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:flex-row"
             >
               <img
                 src={booking.propertyImage}
@@ -118,20 +118,20 @@ export default function DashboardPage() {
               <div className="flex flex-1 flex-col justify-between">
                 <div>
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-semibold text-[#222222]">
+                    <h3 className="font-semibold text-[#222222] dark:text-white">
                       {booking.propertyTitle}
                     </h3>
                     <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-semibold capitalize ${statusStyles[booking.status]}`}>
                       {booking.status}
                     </span>
                   </div>
-                  <p className="mt-1 text-sm text-[#717171]">{booking.location}</p>
-                  <p className="mt-2 text-sm text-[#717171]">
+                  <p className="mt-1 text-sm text-[#717171] dark:text-slate-400">{booking.location}</p>
+                  <p className="mt-2 text-sm text-[#717171] dark:text-slate-400">
                     {booking.checkIn} → {booking.checkOut} · {booking.guests} guests
                   </p>
                 </div>
                 <div className="mt-3 flex items-center justify-between">
-                  <span className="font-semibold text-[#222222]">
+                  <span className="font-semibold text-[#222222] dark:text-slate-200">
                     ${booking.total} total
                   </span>
                   <Link to={`/properties/${booking.propertyId}`}>
@@ -152,7 +152,7 @@ export default function DashboardPage() {
               <PropertyCard key={property.id} property={property} />
             ))
           ) : (
-            <p className="col-span-full text-center text-[#717171]">Your wishlist is empty</p>
+            <p className="col-span-full text-center text-[#717171] dark:text-slate-400">Your wishlist is empty</p>
           )}
         </div>
       )}
@@ -163,14 +163,14 @@ export default function DashboardPage() {
           {activity.map((item) => (
             <div
               key={item.id}
-              className="flex items-center gap-4 rounded-xl border border-[#dddddd] bg-white p-4"
+              className="flex items-center gap-4 rounded-xl border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 p-4"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f7f7f7] text-xs font-bold uppercase text-[#2068a2]">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f7f7f7] dark:bg-slate-800 text-xs font-bold uppercase text-[#2068a2] dark:text-blue-400">
                 {item.type.slice(0, 2)}
               </span>
               <div className="flex-1">
-                <p className="text-sm font-medium text-[#222222]">{item.message}</p>
-                <p className="text-xs text-[#717171]">{item.date}</p>
+                <p className="text-sm font-medium text-[#222222] dark:text-slate-200">{item.message}</p>
+                <p className="text-xs text-[#717171] dark:text-slate-400">{item.date}</p>
               </div>
             </div>
           ))}

@@ -65,7 +65,7 @@ export default function ListingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f7f7]">
+    <div className="min-h-screen bg-[#f7f7f7] dark:bg-slate-950 transition-colors duration-200">
       {/* Agoda-style search header */}
       <div className="bg-[#2068a2] px-4 py-6 md:px-10">
         <div className="mx-auto max-w-[1200px]">
@@ -79,32 +79,32 @@ export default function ListingsPage() {
 
       <div className="mx-auto max-w-[1200px] px-4 py-6 md:px-0">
         <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-          <p className="text-sm text-[#717171]">
-            <span className="font-bold text-[#222222]">{properties.length}</span> properties found
+          <p className="text-sm text-[#717171] dark:text-slate-400">
+            <span className="font-bold text-[#222222] dark:text-white">{properties.length}</span> properties found
           </p>
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-              className="rounded border border-[#dddddd] bg-white px-4 py-2 text-sm font-semibold lg:hidden"
+              className="rounded border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-semibold text-[#222222] dark:text-slate-200 hover:bg-[#f7f7f7] dark:hover:bg-slate-800 cursor-pointer lg:hidden"
             >
               Filters
             </button>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="rounded border border-[#dddddd] bg-white px-4 py-2 text-sm"
+              className="rounded border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-sm text-[#222222] dark:text-slate-200 focus:outline-none"
             >
-              <option value="recommended">Sort: Recommended</option>
-              <option value="price-low">Price: Low to high</option>
-              <option value="price-high">Price: High to low</option>
-              <option value="rating">Guest rating</option>
+              <option value="recommended" className="dark:bg-slate-900 dark:text-white">Sort: Recommended</option>
+              <option value="price-low" className="dark:bg-slate-900 dark:text-white">Price: Low to high</option>
+              <option value="price-high" className="dark:bg-slate-900 dark:text-white">Price: High to low</option>
+              <option value="rating" className="dark:bg-slate-900 dark:text-white">Guest rating</option>
             </select>
           </div>
         </div>
 
         <div className="flex gap-6">
           <aside className={`w-full shrink-0 lg:block lg:w-[260px] ${mobileFiltersOpen ? 'block' : 'hidden'}`}>
-            <div className="sticky top-24 rounded-lg border border-[#dddddd] bg-white p-5">
+            <div className="sticky top-24 rounded-lg border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
               <FilterSidebar filters={filters} onChange={handleFilterChange} onClear={handleClearFilters} />
             </div>
           </aside>
@@ -115,10 +115,10 @@ export default function ListingsPage() {
                 <Loader size="lg" />
               </div>
             ) : paginatedProperties.length === 0 ? (
-              <div className="rounded-lg border border-[#dddddd] bg-white p-12 text-center">
-                <h2 className="text-xl font-bold text-[#222222]">No properties match your search</h2>
-                <p className="mt-2 text-[#717171]">Try different dates or filters</p>
-                <button onClick={handleClearFilters} className="mt-4 text-sm font-semibold text-[#2068a2] underline">
+              <div className="rounded-lg border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 p-12 text-center">
+                <h2 className="text-xl font-bold text-[#222222] dark:text-white">No properties match your search</h2>
+                <p className="mt-2 text-[#717171] dark:text-slate-400">Try different dates or filters</p>
+                <button onClick={handleClearFilters} className="mt-4 text-sm font-semibold text-[#2068a2] dark:text-blue-400 underline cursor-pointer">
                   Clear all filters
                 </button>
               </div>
@@ -135,7 +135,7 @@ export default function ListingsPage() {
                     <button
                       disabled={currentPage === 1}
                       onClick={() => setCurrentPage((p) => p - 1)}
-                      className="rounded border border-[#dddddd] bg-white px-4 py-2 text-sm font-semibold disabled:opacity-40"
+                      className="rounded border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-semibold text-[#222222] dark:text-slate-200 hover:bg-[#f7f7f7] dark:hover:bg-slate-800 disabled:opacity-40 cursor-pointer"
                     >
                       Previous
                     </button>
@@ -143,8 +143,10 @@ export default function ListingsPage() {
                       <button
                         key={page}
                         onClick={() => setCurrentPage(page)}
-                        className={`flex h-10 w-10 items-center justify-center rounded text-sm font-bold ${
-                          currentPage === page ? 'bg-[#2068a2] text-white' : 'border border-[#dddddd] bg-white text-[#222222]'
+                        className={`flex h-10 w-10 items-center justify-center rounded text-sm font-bold cursor-pointer ${
+                          currentPage === page
+                            ? 'bg-[#2068a2] text-white'
+                            : 'border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 text-[#222222] dark:text-slate-200 hover:bg-[#f7f7f7] dark:hover:bg-slate-800'
                         }`}
                       >
                         {page}
@@ -153,7 +155,7 @@ export default function ListingsPage() {
                     <button
                       disabled={currentPage === totalPages}
                       onClick={() => setCurrentPage((p) => p + 1)}
-                      className="rounded border border-[#dddddd] bg-white px-4 py-2 text-sm font-semibold disabled:opacity-40"
+                      className="rounded border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-2 text-sm font-semibold text-[#222222] dark:text-slate-200 hover:bg-[#f7f7f7] dark:hover:bg-slate-800 disabled:opacity-40 cursor-pointer"
                     >
                       Next
                     </button>

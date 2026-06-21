@@ -6,9 +6,9 @@ const variants = {
   secondary:
     'bg-[#2068a2] text-white hover:bg-[#174d78]',
   outline:
-    'border border-[#2068a2] text-[#2068a2] bg-white hover:bg-[#e8f2fa]',
+    'border border-[#2068a2] dark:border-blue-500 text-[#2068a2] dark:text-blue-400 bg-white dark:bg-transparent hover:bg-[#e8f2fa] dark:hover:bg-slate-800',
   ghost:
-    'text-[#222222] hover:text-[#2068a2] hover:bg-[#e8f2fa]',
+    'text-[#222222] dark:text-slate-300 hover:text-[#2068a2] dark:hover:text-blue-400 hover:bg-[#e8f2fa] dark:hover:bg-slate-800',
   danger:
     'bg-red-600 text-white hover:bg-red-700',
 };

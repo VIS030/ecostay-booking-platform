@@ -1,3 +1,7 @@
+import meadow from "../assets/images/meadow.jpg";
+import star from "../assets/images/star.jpg";
+
+
 export const categories = [
   { id: 'mountain', name: 'Mountain Retreats', icon: '⛰️', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80' },
   { id: 'forest', name: 'Forest Cabins', icon: '🌲', image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80' },
@@ -155,7 +159,7 @@ export const properties = [
     rating: 4.97,
     reviewCount: 186,
     images: [
-      'https://images.unsplash.com/photo-1510798837861-dc94a05627fc?w=1200&q=80',
+      meadow,
       'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
       'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=80',
       'https://images.unsplash.com/photo-1542718610-a1d656a18855?w=1200&q=80',
@@ -340,7 +344,7 @@ export const properties = [
     rating: 4.89,
     reviewCount: 167,
     images: [
-      'https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=1200&q=80',
+      star,
       'https://images.unsplash.com/photo-1451337516015-6b5e72a67289?w=1200&q=80',
       'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80',
     ],
@@ -540,7 +544,7 @@ export const bookings = [
     id: 'b3',
     propertyId: '1',
     propertyTitle: 'Alpine Meadow Chalet',
-    propertyImage: 'https://images.unsplash.com/photo-1510798837861-dc94a05627fc?w=400&q=80',
+    propertyImage: meadow,
     location: 'Zermatt, Switzerland',
     checkIn: '2025-12-20',
     checkOut: '2025-12-27',

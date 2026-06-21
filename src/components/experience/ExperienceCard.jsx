@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 import Button from '../ui/Button';
 
 const difficultyStyles = {
-  Easy: 'bg-[#DCFCE7] text-[#14532D]',
-  Moderate: 'bg-[#FEF3C7] text-[#B45309]',
-  Hard: 'bg-[#FEE2E2] text-[#991B1B]',
+  Easy: 'bg-[#DCFCE7] dark:bg-green-950/40 text-[#14532D] dark:text-green-300',
+  Moderate: 'bg-[#FEF3C7] dark:bg-amber-950/40 text-[#B45309] dark:text-amber-300',
+  Hard: 'bg-[#FEE2E2] dark:bg-red-950/40 text-[#991B1B] dark:text-red-300',
 };
 
 export default function ExperienceCard({ experience, className = '' }) {
@@ -12,7 +12,7 @@ export default function ExperienceCard({ experience, className = '' }) {
 
   return (
     <article
-      className={`group flex flex-col overflow-hidden rounded-xl border border-[#dddddd] bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.12)] ${className}`}
+      className={`group flex flex-col overflow-hidden rounded-xl border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(0,0,0,0.12)] ${className}`}
     >
       <div className="relative aspect-[16/10] overflow-hidden">
         <img
@@ -27,11 +27,11 @@ export default function ExperienceCard({ experience, className = '' }) {
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="text-xl font-semibold text-[#222222]">{experience.name}</h3>
-        <p className="mt-2 flex-1 text-sm leading-relaxed text-[#717171]">
+        <h3 className="text-xl font-semibold text-[#222222] dark:text-white">{experience.name}</h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed text-[#717171] dark:text-slate-400">
           {experience.description}
         </p>
-        <div className="mt-4 flex items-center gap-4 text-sm text-[#717171]">
+        <div className="mt-4 flex items-center gap-4 text-sm text-[#717171] dark:text-slate-400">
           <span className="flex items-center gap-1.5">
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />

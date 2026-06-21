@@ -58,7 +58,7 @@ export default function HomePage() {
   return (
     <>
       {/* Hero + Search — Airbnb style */}
-      <section className="border-b border-[#dddddd] bg-white pb-8 pt-6">
+      <section className="border-b border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-950 pb-8 pt-6">
         <div className="mx-auto max-w-[1760px] px-6 md:px-10">
           <SearchBar variant="hero" className="mb-10" />
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
@@ -72,7 +72,7 @@ export default function HomePage() {
       </section>
 
       {/* Category scroll — Airbnb icons row */}
-      <section className="border-b border-[#dddddd] py-6">
+      <section className="border-b border-[#dddddd] dark:border-slate-800 py-6 bg-white dark:bg-slate-950">
         <div className="mx-auto max-w-[1760px] px-6 md:px-10">
           <div className="flex gap-8 overflow-x-auto scrollbar-hide pb-2">
             {categories.map((cat) => (
@@ -81,10 +81,10 @@ export default function HomePage() {
                 to={`/listings?category=${encodeURIComponent(typeMap[cat.id] || '')}`}
                 className="flex shrink-0 flex-col items-center gap-2 opacity-70 transition hover:opacity-100"
               >
-                <div className="h-16 w-16 overflow-hidden rounded-full border border-[#dddddd]">
+                <div className="h-16 w-16 overflow-hidden rounded-full border border-[#dddddd] dark:border-slate-700">
                   <img src={cat.image} alt="" className="h-full w-full object-cover" />
                 </div>
-                <span className="max-w-[80px] text-center text-xs font-semibold text-[#717171]">{cat.name.split(' ')[0]}</span>
+                <span className="max-w-[80px] text-center text-xs font-semibold text-[#717171] dark:text-slate-400">{cat.name.split(' ')[0]}</span>
               </Link>
             ))}
           </div>
@@ -92,7 +92,7 @@ export default function HomePage() {
       </section>
 
       {/* Live anywhere banner */}
-      <section className="py-10">
+      <section className="py-10 bg-white dark:bg-slate-950">
         <div className="mx-auto max-w-[1760px] px-6 md:px-10">
           <div className="relative overflow-hidden rounded-2xl">
             <img
@@ -104,7 +104,7 @@ export default function HomePage() {
             <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16">
               <h2 className="max-w-md text-3xl font-bold text-white md:text-4xl">Live anywhere, travel sustainably</h2>
               <p className="mt-2 max-w-sm text-white/90">2,000+ verified eco homestays across 45 countries</p>
-              <Link to="/listings" className="mt-6 inline-flex w-fit rounded-lg bg-white px-6 py-3 text-sm font-semibold text-[#222222] hover:bg-[#f7f7f7]">
+              <Link to="/listings" className="mt-6 inline-flex w-fit rounded-lg bg-white dark:bg-slate-800 px-6 py-3 text-sm font-semibold text-[#222222] dark:text-white hover:bg-[#f7f7f7] dark:hover:bg-slate-700">
                 Explore all stays
               </Link>
             </div>
@@ -113,11 +113,11 @@ export default function HomePage() {
       </section>
 
       {/* Popular homes grid — Airbnb */}
-      <section className="py-4">
+      <section className="py-4 bg-white dark:bg-slate-950">
         <div className="mx-auto max-w-[1760px] px-6 md:px-10">
           <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-semibold text-[#222222]">Popular eco homestays</h2>
-            <Link to="/listings" className="text-sm font-semibold text-[#222222] underline">Show all</Link>
+            <h2 className="text-2xl font-semibold text-[#222222] dark:text-slate-100">Popular eco homestays</h2>
+            <Link to="/listings" className="text-sm font-semibold text-[#222222] dark:text-slate-350 underline">Show all</Link>
           </div>
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {featured.map((property) => (
@@ -128,9 +128,9 @@ export default function HomePage() {
       </section>
 
       {/* Destinations — large photo row */}
-      <section className="bg-[#f7f7f7] py-12">
+      <section className="bg-[#f7f7f7] dark:bg-slate-900 border-b border-[#dddddd] dark:border-slate-800 py-12">
         <div className="mx-auto max-w-[1760px] px-6 md:px-10">
-          <h2 className="mb-6 text-2xl font-semibold text-[#222222]">Inspiration for your next trip</h2>
+          <h2 className="mb-6 text-2xl font-semibold text-[#222222] dark:text-slate-100">Inspiration for your next trip</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {destinations.slice(0, 6).map((dest) => (
               <Link
@@ -155,9 +155,9 @@ export default function HomePage() {
       </section>
 
       {/* More stays horizontal feel on mobile, grid desktop */}
-      <section className="py-12">
+      <section className="py-12 bg-white dark:bg-slate-950">
         <div className="mx-auto max-w-[1760px] px-6 md:px-10">
-          <h2 className="mb-6 text-2xl font-semibold text-[#222222]">Weekend getaways</h2>
+          <h2 className="mb-6 text-2xl font-semibold text-[#222222] dark:text-slate-100">Weekend getaways</h2>
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {allStays.map((property) => (
               <PropertyCard key={property.id} property={property} variant="airbnb" />
@@ -167,7 +167,7 @@ export default function HomePage() {
       </section>
 
       {/* Agoda-style promo strip */}
-      <section className="border-t border-[#dddddd] bg-[#2068a2] py-10">
+      <section className="border-t border-[#dddddd] dark:border-slate-800 bg-[#2068a2] py-10">
         <div className="mx-auto flex max-w-[1760px] flex-col items-center justify-between gap-6 px-6 text-center md:flex-row md:px-10 md:text-left">
           <div>
             <p className="text-sm font-bold uppercase tracking-wider text-white/80">Limited offer</p>

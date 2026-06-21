@@ -1,3 +1,6 @@
+import river from "../assets/images/river.jpg";
+import bike from "../assets/images/bike.jpg";
+
 export const experiences = [
   {
     id: 'trekking',
@@ -24,7 +27,7 @@ export const experiences = [
     name: 'River Rafting',
     slug: 'river-rafting',
     description: 'White-water adventures on the Ganges and Beas with certified local operators.',
-    image: 'https://images.unsplash.com/photo-1530587190454-c850c91547a9?w=800&q=85',
+    image: river,
     difficulty: 'Moderate',
     duration: 'Half day',
     popular: true,
@@ -64,7 +67,7 @@ export const experiences = [
     name: 'Mountain Biking',
     slug: 'mountain-biking',
     description: 'Downhill and cross-country routes through pine forests and mountain passes.',
-    image: 'https://images.unsplash.com/photo-1541625602330-2277a4c57245?w=800&q=85',
+    image: bike,
     difficulty: 'Hard',
     duration: '3–6 hours',
     popular: false,

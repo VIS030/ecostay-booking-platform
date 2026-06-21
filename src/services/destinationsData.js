@@ -1,3 +1,11 @@
+import ladhakImg from "../assets/images/ladhak.jpg";
+import shimla from "../assets/images/shimla.jpg";
+import rishikesh from "../assets/images/rishikesh.jpg";
+import kasol from "../assets/images/kasol.jpg";
+import dharmshala from "../assets/images/dharmshala.jpg";
+import nanital from "../assets/images/nanital.jpg";
+
+
 export const indiaDestinations = [
   {
     id: 'manali',
@@ -14,7 +22,7 @@ export const indiaDestinations = [
     name: 'Shimla',
     slug: 'shimla',
     description: 'Colonial charm meets Himalayan views — perfect for a sustainable hill retreat.',
-    image: 'https://images.unsplash.com/photo-1593697829587-8a20694d2d8e?w=800&q=85',
+    image: shimla,
     stayCount: 98,
     popular: true,
     region: 'Himachal Pradesh',
@@ -34,7 +42,7 @@ export const indiaDestinations = [
     name: 'Nainital',
     slug: 'nainital',
     description: 'Lake-side eco-lodges surrounded by oak forests and tranquil mountain air.',
-    image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=85',
+    image: nanital,
     stayCount: 64,
     popular: true,
     region: 'Uttarakhand',
@@ -44,7 +52,7 @@ export const indiaDestinations = [
     name: 'Kasol',
     slug: 'kasol',
     description: 'Parvati Valley vibes — riverside camps, wooden cottages, and off-grid living.',
-    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&q=85',
+    image: kasol,
     stayCount: 53,
     popular: false,
     region: 'Himachal Pradesh',
@@ -54,7 +62,7 @@ export const indiaDestinations = [
     name: 'Rishikesh',
     slug: 'rishikesh',
     description: 'Yoga capital on the Ganges — ashram stays, rafting, and riverside eco-resorts.',
-    image: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&q=85',
+    image: rishikesh,
     stayCount: 118,
     popular: false,
     region: 'Uttarakhand',
@@ -64,7 +72,7 @@ export const indiaDestinations = [
     name: 'Dharamshala',
     slug: 'dharamshala',
     description: 'Tibetan culture, tea gardens, and mountain homestays below the Dhauladhar range.',
-    image: 'https://images.unsplash.com/photo-1548013146-72479768bada?w=800&q=85',
+    image: dharmshala,
     stayCount: 87,
     popular: false,
     region: 'Himachal Pradesh',
@@ -74,7 +82,7 @@ export const indiaDestinations = [
     name: 'Leh Ladakh',
     slug: 'leh-ladakh',
     description: 'High-altitude desert landscapes, monasteries, and solar-powered mountain camps.',
-    image: 'https://images.unsplash.com/photo-1585135497273-1a1194a8c947?w=800&q=85',
+    image: ladhakImg,
     stayCount: 71,
     popular: false,
     region: 'Ladakh',

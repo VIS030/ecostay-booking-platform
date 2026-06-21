@@ -40,16 +40,16 @@ export default function SearchBar({
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           placeholder="City, property, or destination"
-          className="flex-1 rounded-lg border-0 bg-white px-4 py-3.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-white/50"
+          className="flex-1 rounded-lg border-0 bg-white dark:bg-slate-800 px-4 py-3.5 text-sm dark:text-white placeholder:text-[#717171] dark:placeholder:text-slate-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-white/50"
         />
-        <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} className="rounded-lg border-0 bg-white px-4 py-3 text-sm shadow-sm" />
-        <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} className="rounded-lg border-0 bg-white px-4 py-3 text-sm shadow-sm" />
-        <select value={guests} onChange={(e) => setGuests(Number(e.target.value))} className="rounded-lg border-0 bg-white px-4 py-3 text-sm shadow-sm">
+        <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} className="rounded-lg border-0 bg-white dark:bg-slate-800 px-4 py-3 text-sm dark:text-white shadow-sm" />
+        <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} className="rounded-lg border-0 bg-white dark:bg-slate-800 px-4 py-3 text-sm dark:text-white shadow-sm" />
+        <select value={guests} onChange={(e) => setGuests(Number(e.target.value))} className="rounded-lg border-0 bg-white dark:bg-slate-800 px-4 py-3 text-sm dark:text-white shadow-sm">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-            <option key={n} value={n}>{n} guest{n > 1 ? 's' : ''}</option>
+            <option key={n} value={n} className="dark:bg-slate-800 dark:text-white">{n} guest{n > 1 ? 's' : ''}</option>
           ))}
         </select>
-        <button type="submit" className="rounded-lg bg-[#ff6600] px-8 py-3.5 text-sm font-bold text-white hover:bg-[#e55c00]">
+        <button type="submit" className="rounded-lg bg-[#ff6600] px-8 py-3.5 text-sm font-bold text-white hover:bg-[#e55c00] cursor-pointer">
           SEARCH
         </button>
       </form>
@@ -58,15 +58,15 @@ export default function SearchBar({
 
   if (variant === 'compact') {
     return (
-      <form onSubmit={handleSubmit} className={`flex overflow-hidden rounded-full border border-[#dddddd] bg-white shadow-sm ${className}`}>
+      <form onSubmit={handleSubmit} className={`flex overflow-hidden rounded-full border border-[#dddddd] dark:border-slate-700 bg-white dark:bg-slate-850 shadow-sm ${className}`}>
         <input
           type="text"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           placeholder="Search destinations"
-          className="flex-1 px-5 py-3 text-sm focus:outline-none"
+          className="flex-1 px-5 py-3 text-sm bg-transparent dark:text-white placeholder:text-[#717171] dark:placeholder:text-slate-500 focus:outline-none"
         />
-        <button type="submit" className="m-1.5 flex items-center gap-2 rounded-full bg-[#2068a2] px-5 py-2 text-sm font-semibold text-white hover:bg-[#174d78]">
+        <button type="submit" className="m-1.5 flex items-center gap-2 rounded-full bg-[#2068a2] px-5 py-2 text-sm font-semibold text-white hover:bg-[#174d78] cursor-pointer">
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
@@ -78,47 +78,49 @@ export default function SearchBar({
 
   const fieldClass = (field) =>
     `flex-1 cursor-pointer rounded-full px-6 py-3 transition-shadow ${
-      activeField === field ? 'bg-white shadow-[0_0_0_2px_#222222]' : 'hover:bg-[#ebebeb] hover:shadow-sm'
+      activeField === field
+        ? 'bg-white dark:bg-slate-850 shadow-[0_0_0_2px_#222222] dark:shadow-[0_0_0_2px_#64748b]'
+        : 'hover:bg-[#ebebeb] dark:hover:bg-slate-800 hover:shadow-sm'
     }`;
 
   return (
     <form
       onSubmit={handleSubmit}
-      className={`mx-auto flex w-full max-w-[850px] items-center rounded-full border border-[#dddddd] bg-[#f7f7f7] p-1.5 shadow-[0_6px_20px_rgba(0,0,0,0.12)] ${className}`}
+      className={`mx-auto flex w-full max-w-[850px] items-center rounded-full border border-[#dddddd] dark:border-slate-800 bg-[#f7f7f7] dark:bg-slate-900 p-1.5 shadow-[0_6px_20px_rgba(0,0,0,0.12)] ${className}`}
     >
       <div className={fieldClass('where')} onClick={() => setActiveField('where')}>
-        <label className="block text-xs font-bold text-[#222222]">Where</label>
+        <label className="block text-xs font-bold text-[#222222] dark:text-slate-200">Where</label>
         <input
           type="text"
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           onFocus={() => setActiveField('where')}
           placeholder="Search destinations"
-          className="w-full bg-transparent text-sm text-[#717171] placeholder:text-[#717171] focus:outline-none"
+          className="w-full bg-transparent text-sm text-[#717171] dark:text-slate-400 placeholder:text-[#717171] dark:placeholder:text-slate-500 focus:outline-none"
         />
       </div>
-      <div className="hidden h-8 w-px bg-[#dddddd] sm:block" />
+      <div className="hidden h-8 w-px bg-[#dddddd] dark:bg-slate-800 sm:block" />
       <div className={`hidden sm:block ${fieldClass('in')}`} onClick={() => setActiveField('in')}>
-        <label className="block text-xs font-bold text-[#222222]">Check in</label>
-        <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} onFocus={() => setActiveField('in')} className="w-full bg-transparent text-sm text-[#717171] focus:outline-none" />
+        <label className="block text-xs font-bold text-[#222222] dark:text-slate-200">Check in</label>
+        <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} onFocus={() => setActiveField('in')} className="w-full bg-transparent text-sm text-[#717171] dark:text-slate-400 focus:outline-none" />
       </div>
-      <div className="hidden h-8 w-px bg-[#dddddd] md:block" />
+      <div className="hidden h-8 w-px bg-[#dddddd] dark:bg-slate-800 md:block" />
       <div className={`hidden md:block ${fieldClass('out')}`} onClick={() => setActiveField('out')}>
-        <label className="block text-xs font-bold text-[#222222]">Check out</label>
-        <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} onFocus={() => setActiveField('out')} className="w-full bg-transparent text-sm text-[#717171] focus:outline-none" />
+        <label className="block text-xs font-bold text-[#222222] dark:text-slate-200">Check out</label>
+        <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} onFocus={() => setActiveField('out')} className="w-full bg-transparent text-sm text-[#717171] dark:text-slate-400 focus:outline-none" />
       </div>
-      <div className="hidden h-8 w-px bg-[#dddddd] lg:block" />
-      <div className={`hidden lg:block ${fieldClass('who')}`} onClick={() => setActiveField('who')}>
-        <label className="block text-xs font-bold text-[#222222]">Who</label>
-        <select value={guests} onChange={(e) => setGuests(Number(e.target.value))} onFocus={() => setActiveField('who')} className="w-full bg-transparent text-sm text-[#717171] focus:outline-none">
+      <div className="hidden h-8 w-px bg-[#dddddd] dark:bg-slate-800 lg:block" />
+      <div className={`hidden lg:block ${fieldClass('who')} relative`} onClick={() => setActiveField('who')}>
+        <label className="block text-xs font-bold text-[#222222] dark:text-slate-200">Who</label>
+        <select value={guests} onChange={(e) => setGuests(Number(e.target.value))} onFocus={() => setActiveField('who')} className="w-full bg-transparent text-sm text-[#717171] dark:text-slate-400 focus:outline-none">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-            <option key={n} value={n}>{n} guest{n > 1 ? 's' : ''}</option>
+            <option key={n} value={n} className="dark:bg-slate-900 dark:text-white">{n} guest{n > 1 ? 's' : ''}</option>
           ))}
         </select>
       </div>
       <button
         type="submit"
-        className="ml-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#16A34A] text-white hover:bg-[#14532D]"
+        className="ml-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#16A34A] text-white hover:bg-[#14532D] cursor-pointer"
         aria-label="Search"
       >
         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
