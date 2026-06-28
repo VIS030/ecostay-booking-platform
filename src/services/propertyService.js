@@ -11,6 +11,9 @@ import {
   recentActivity,
 } from './mockData';
 
+import apiClient from './api';
+import { indiaDestinations } from './destinationsData';
+
 const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
@@ -18,74 +21,92 @@ const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
  */
 export const propertyService = {
   async getAll(filters = {}) {
-    await delay();
-    let result = [...properties];
-
+    let result;
     if (filters.search) {
-      const q = filters.search.toLowerCase();
-      result = result.filter(
-        (p) =>
-          p.title.toLowerCase().includes(q) ||
-          p.location.city.toLowerCase().includes(q) ||
-          p.location.country.toLowerCase().includes(q)
-      );
+      result = await apiClient.get(`/properties/search?q=${encodeURIComponent(filters.search)}`);
+    } else {
+      const params = new URLSearchParams();
+      if (filters.category) params.append('category', filters.category);
+      if (filters.minPrice) params.append('minPrice', filters.minPrice);
+      if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
+      if (filters.minRating) params.append('minRating', filters.minRating);
+      if (filters.guests) params.append('guests', filters.guests);
+      if (filters.featured !== undefined) params.append('featured', filters.featured);
+      if (filters.amenities?.length) {
+        params.append('amenities', filters.amenities.join(','));
+      }
+
+      const queryString = params.toString();
+      const url = queryString ? `/properties?${queryString}` : '/properties';
+      result = await apiClient.get(url);
     }
 
-    if (filters.category) {
-      result = result.filter((p) => p.propertyType === filters.category);
-    }
-
-    if (filters.minPrice) {
-      result = result.filter((p) => p.price >= Number(filters.minPrice));
-    }
-
-    if (filters.maxPrice) {
-      result = result.filter((p) => p.price <= Number(filters.maxPrice));
-    }
-
-    if (filters.minRating) {
-      result = result.filter((p) => p.rating >= Number(filters.minRating));
-    }
-
-    if (filters.guests) {
-      result = result.filter((p) => p.maxGuests >= Number(filters.guests));
-    }
-
-    if (filters.amenities?.length) {
-      result = result.filter((p) =>
-        filters.amenities.every((a) => p.amenities.includes(a))
-      );
-    }
-
-    if (filters.featured) {
-      result = result.filter((p) => p.featured);
+    // Apply client-side filters if combining search with additional filters
+    if (filters.search) {
+      if (filters.category) {
+        result = result.filter((p) => p.propertyType === filters.category || p.category === filters.category);
+      }
+      if (filters.minPrice) {
+        result = result.filter((p) => p.price >= Number(filters.minPrice));
+      }
+      if (filters.maxPrice) {
+        result = result.filter((p) => p.price <= Number(filters.maxPrice));
+      }
+      if (filters.minRating) {
+        result = result.filter((p) => p.rating >= Number(filters.minRating));
+      }
+      if (filters.guests) {
+        result = result.filter((p) => p.maxGuests >= Number(filters.guests));
+      }
+      if (filters.amenities?.length) {
+        result = result.filter((p) =>
+          filters.amenities.every((a) => p.amenities.includes(a))
+        );
+      }
+      if (filters.featured) {
+        result = result.filter((p) => p.featured);
+      }
     }
 
     return result;
   },
 
   async getById(id) {
-    await delay();
-    const property = properties.find((p) => p.id === id || p.slug === id);
-    if (!property) throw new Error('Property not found');
-    return property;
+    try {
+      return await apiClient.get(`/properties/${id}`);
+    } catch (err) {
+      // Fallback/Error handle matches original expectations
+      throw new Error('Property not found');
+    }
   },
 
   async getFeatured(limit = 4) {
-    await delay();
-    return properties.filter((p) => p.featured).slice(0, limit);
+    const featured = await apiClient.get('/properties?featured=true');
+    return featured.slice(0, limit);
   },
 
   async getReviews(propertyId) {
     await delay();
     return reviews.filter((r) => r.propertyId === propertyId);
   },
+
+  async create(propertyData) {
+    return await apiClient.post('/properties', propertyData);
+  },
+
+  async update(id, propertyData) {
+    return await apiClient.put(`/properties/${id}`, propertyData);
+  },
+
+  async delete(id) {
+    return await apiClient.delete(`/properties/${id}`);
+  },
 };
 
 export const destinationService = {
   async getAll() {
     await delay();
-    return destinations;
+    return indiaDestinations;
   },
 };
 

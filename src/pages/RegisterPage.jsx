@@ -2,27 +2,31 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
-import { useToast } from '../context/ToastContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  const { showToast } = useToast();
+  const { register } = useAuth();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
     if (form.password.length < 8) newErrors.password = 'At least 8 characters';
     if (form.password !== form.confirmPassword) newErrors.confirmPassword = 'Passwords do not match';
     if (Object.keys(newErrors).length) { setErrors(newErrors); return; }
+    
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      showToast({ message: 'Account created! (Demo mode)', type: 'success' });
+    try {
+      await register(form.name, form.email, form.password);
       navigate('/dashboard');
-    }, 800);
+    } catch (err) {
+      // Handled in AuthContext
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

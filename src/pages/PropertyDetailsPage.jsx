@@ -29,6 +29,15 @@ export default function PropertyDetailsPage() {
       .finally(() => setLoading(false));
   }, [id]);
 
+  useEffect(() => {
+    if (property) {
+      const stored = localStorage.getItem('ecostay-recently-viewed');
+      let list = stored ? JSON.parse(stored) : [];
+      list = [property.id, ...list.filter((x) => x !== property.id)].slice(0, 10);
+      localStorage.setItem('ecostay-recently-viewed', JSON.stringify(list));
+    }
+  }, [property]);
+
   if (loading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">

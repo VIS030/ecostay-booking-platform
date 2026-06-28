@@ -103,7 +103,7 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16">
               <h2 className="max-w-md text-3xl font-bold text-white md:text-4xl">Live anywhere, travel sustainably</h2>
-              <p className="mt-2 max-w-sm text-white/90">2,000+ verified eco homestays across 45 countries</p>
+              <p className="mt-2 max-w-sm text-white/90">100+ verified eco homestays across India</p>
               <Link to="/listings" className="mt-6 inline-flex w-fit rounded-lg bg-white dark:bg-slate-800 px-6 py-3 text-sm font-semibold text-[#222222] dark:text-white hover:bg-[#f7f7f7] dark:hover:bg-slate-700">
                 Explore all stays
               </Link>
@@ -146,7 +146,7 @@ export default function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 <div className="absolute bottom-0 p-5">
                   <h3 className="text-xl font-bold text-white">{dest.name}</h3>
-                  <p className="text-sm text-white/80">{dest.propertyCount} properties</p>
+                  <p className="text-sm text-white/80">{dest.stayCount} properties</p>
                 </div>
               </Link>
             ))}

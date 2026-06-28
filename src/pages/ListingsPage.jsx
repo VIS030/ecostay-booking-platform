@@ -41,6 +41,18 @@ export default function ListingsPage() {
   }, [filters, sortBy]);
 
   useEffect(() => {
+    setFilters((prev) => ({
+      ...prev,
+      search: searchParams.get('search') || '',
+      category: searchParams.get('category') || '',
+      minPrice: searchParams.get('minPrice') || '',
+      maxPrice: searchParams.get('maxPrice') || '',
+      minRating: searchParams.get('minRating') || '',
+      guests: searchParams.get('guests') || '',
+    }));
+  }, [searchParams]);
+
+  useEffect(() => {
     fetchProperties();
   }, [fetchProperties]);
 
@@ -65,7 +77,7 @@ export default function ListingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f7f7] dark:bg-slate-950 transition-colors duration-200">
+    <div className="min-h-screen bg-[#f7f7f7] dark:bg-slate-950 transition-colors duration-200 animate-fade-in">
       {/* Agoda-style search header */}
       <div className="bg-[#2068a2] px-4 py-6 md:px-10">
         <div className="mx-auto max-w-[1200px]">
@@ -73,7 +85,13 @@ export default function ListingsPage() {
           <h1 className="mb-4 text-2xl font-bold text-white">
             {filters.search || filters.category || 'All eco-friendly stays'}
           </h1>
-          <SearchBar variant="agoda" />
+          <SearchBar
+            variant="agoda"
+            defaultLocation={filters.search}
+            defaultCheckIn={searchParams.get('checkIn') || ''}
+            defaultCheckOut={searchParams.get('checkOut') || ''}
+            defaultGuests={Number(filters.guests) || 2}
+          />
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
 
 const navLinks = [
   { to: '/listings', label: 'Stays', match: (pathname) => pathname === '/listings' },
@@ -70,11 +71,14 @@ function ThemeToggle() {
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   useEffect(() => {
     setMobileOpen(false);
+    setMenuOpen(false);
   }, [location.pathname, location.search]);
 
   useEffect(() => {
@@ -143,32 +147,70 @@ export default function Navbar() {
           {/* Desktop auth */}
           <div className="hidden items-center justify-end gap-2 lg:flex">
             <ThemeToggle />
-            <button
-              type="button"
-              onClick={() => navigate('/login')}
-              className="rounded-full px-5 py-2.5 text-sm font-semibold text-[#222222] dark:text-slate-200 transition-all duration-200 hover:bg-[#f7f7f7] dark:hover:bg-slate-800 active:scale-[0.98] cursor-pointer"
-            >
-              Log in
-            </button>
-            <button
-              type="button"
-              onClick={() => navigate('/register')}
-              className="rounded-full bg-[#16A34A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#14532D] hover:shadow-md active:scale-[0.98] cursor-pointer"
-            >
-              Sign up
-            </button>
+            {user ? (
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setMenuOpen(!menuOpen)}
+                  className="flex items-center gap-2 rounded-full border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-850 p-1.5 hover:shadow-md transition cursor-pointer"
+                >
+                  <img src={user.avatar} alt={user.name} className="h-8 w-8 rounded-full object-cover" />
+                  <span className="pr-2 text-sm font-semibold text-[#222222] dark:text-slate-200">{user.name}</span>
+                </button>
+                {menuOpen && (
+                  <div className="absolute right-0 mt-2 w-48 rounded-xl border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 py-2 shadow-lg z-50">
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setMenuOpen(false)}
+                      className="block px-4 py-2 text-sm text-[#222222] dark:text-slate-200 hover:bg-[#f7f7f7] dark:hover:bg-slate-800"
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMenuOpen(false);
+                        logout();
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-[#f7f7f7] dark:hover:bg-slate-800 cursor-pointer"
+                    >
+                      Log out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => navigate('/login')}
+                  className="rounded-full px-5 py-2.5 text-sm font-semibold text-[#222222] dark:text-slate-200 transition-all duration-200 hover:bg-[#f7f7f7] dark:hover:bg-slate-800 active:scale-[0.98] cursor-pointer"
+                >
+                  Log in
+                </button>
+                <button
+                  type="button"
+                  onClick={() => navigate('/register')}
+                  className="rounded-full bg-[#16A34A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#14532D] hover:shadow-md active:scale-[0.98] cursor-pointer"
+                >
+                  Sign up
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile: auth + hamburger */}
           <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
-            <button
-              type="button"
-              onClick={() => navigate('/login')}
-              className="hidden rounded-full px-3 py-2 text-sm font-semibold text-[#222222] dark:text-slate-200 transition-colors hover:bg-[#f7f7f7] dark:hover:bg-slate-800 sm:inline-flex cursor-pointer"
-            >
-              Log in
-            </button>
+            {!user && (
+              <button
+                type="button"
+                onClick={() => navigate('/login')}
+                className="hidden rounded-full px-3 py-2 text-sm font-semibold text-[#222222] dark:text-slate-200 transition-colors hover:bg-[#f7f7f7] dark:hover:bg-slate-800 sm:inline-flex cursor-pointer"
+              >
+                Log in
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setMobileOpen((open) => !open)}
@@ -221,28 +263,59 @@ export default function Navbar() {
             );
           })}
 
-          <div className="mt-4 grid gap-2 border-t border-[#ebebeb] dark:border-slate-800 pt-4 sm:hidden">
-            <button
-              type="button"
-              onClick={() => {
-                navigate('/login');
-                setMobileOpen(false);
-              }}
-              className="w-full rounded-xl border border-[#dddddd] dark:border-slate-700 px-4 py-3 text-sm font-semibold text-[#222222] dark:text-slate-200 transition-colors hover:bg-[#f7f7f7] dark:hover:bg-slate-800 cursor-pointer"
-            >
-              Log in
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                navigate('/register');
-                setMobileOpen(false);
-              }}
-              className="w-full rounded-xl bg-[#16A34A] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#14532D] cursor-pointer"
-            >
-              Sign up
-            </button>
-          </div>
+          {user ? (
+            <div className="mt-4 border-t border-[#ebebeb] dark:border-slate-800 pt-4">
+              <div className="flex items-center gap-3 px-4 py-2">
+                <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full object-cover" />
+                <div>
+                  <p className="text-sm font-bold text-[#222222] dark:text-white">{user.name}</p>
+                  <p className="text-xs text-[#717171] dark:text-slate-400">{user.email}</p>
+                </div>
+              </div>
+              <div className="mt-3 grid gap-1">
+                <Link
+                  to="/dashboard"
+                  onClick={() => setMobileOpen(false)}
+                  className="block rounded-xl px-4 py-3 text-sm font-medium text-[#222222] dark:text-slate-200 hover:bg-[#f7f7f7] dark:hover:bg-slate-800"
+                >
+                  Dashboard
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    logout();
+                  }}
+                  className="w-full text-left rounded-xl px-4 py-3 text-sm font-medium text-red-600 hover:bg-[#f7f7f7] dark:hover:bg-slate-800 cursor-pointer"
+                >
+                  Log out
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-4 grid gap-2 border-t border-[#ebebeb] dark:border-slate-800 pt-4 sm:hidden">
+              <button
+                type="button"
+                onClick={() => {
+                  navigate('/login');
+                  setMobileOpen(false);
+                }}
+                className="w-full rounded-xl border border-[#dddddd] dark:border-slate-700 px-4 py-3 text-sm font-semibold text-[#222222] dark:text-slate-200 transition-colors hover:bg-[#f7f7f7] dark:hover:bg-slate-800 cursor-pointer"
+              >
+                Log in
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  navigate('/register');
+                  setMobileOpen(false);
+                }}
+                className="w-full rounded-xl bg-[#16A34A] px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#14532D] cursor-pointer"
+              >
+                Sign up
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

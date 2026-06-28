@@ -2,22 +2,26 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
-import { useToast } from '../context/ToastContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function LoginPage() {
   const navigate = useNavigate();
-  const { showToast } = useToast();
+  const { login } = useAuth();
   const [form, setForm] = useState({ email: '', password: '' });
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      showToast({ message: 'Welcome back! (Demo mode)', type: 'success' });
+    try {
+      await login(form.email, form.password, rememberMe);
       navigate('/dashboard');
-    }, 800);
+    } catch (err) {
+      // Handled in AuthContext
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -32,6 +36,20 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit} className="mt-8 space-y-4">
               <Input label="Email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
               <Input label="Password" type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required />
+              <div className="flex items-center justify-between text-sm py-1">
+                <label className="flex items-center gap-2 cursor-pointer dark:text-slate-350 select-none">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="h-4 w-4 rounded border-gray-300 dark:border-slate-700 text-[#2068a2] focus:ring-[#2068a2] cursor-pointer"
+                  />
+                  Remember me
+                </label>
+                <Link to="/forgot-password" className="font-semibold text-[#2068a2] dark:text-blue-400 hover:underline">
+                  Forgot password?
+                </Link>
+              </div>
               <Button type="submit" className="w-full font-bold" size="lg" loading={loading}>Continue</Button>
             </form>
             <p className="mt-6 text-center text-sm text-[#717171] dark:text-slate-400">

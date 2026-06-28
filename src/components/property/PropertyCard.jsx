@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { HeartIcon } from '../layout/Navbar';
+import { useAuth } from '../../context/AuthContext';
 
 function StarIcon() {
   return (
@@ -11,12 +12,18 @@ function StarIcon() {
 }
 
 export default function PropertyCard({ property, variant = 'airbnb', className = '' }) {
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  const { wishlistIds, toggleWishlist } = useAuth();
   const [imageIndex, setImageIndex] = useState(0);
 
+  const isWishlisted = wishlistIds.includes(property.id);
   const locationLabel = `${property.location.city}, ${property.location.country}`;
   const images = property.images || [];
   const agodaScore = (property.rating * 2).toFixed(1);
+
+  const handleWishlistClick = (e) => {
+    e.preventDefault();
+    toggleWishlist(property.id);
+  };
 
   if (variant === 'agoda') {
     return (
@@ -105,7 +112,7 @@ export default function PropertyCard({ property, variant = 'airbnb', className =
           )}
           <button
             type="button"
-            onClick={(e) => { e.preventDefault(); setIsWishlisted(!isWishlisted); }}
+            onClick={handleWishlistClick}
             className="absolute right-3 top-3 text-white drop-shadow-md"
             aria-label="Save to wishlist"
           >
