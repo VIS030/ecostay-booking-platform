@@ -4,9 +4,22 @@ from routes.properties import router as properties_router
 from routes.auth import router as auth_router
 from routes.bookings import router as bookings_router
 
+from database import engine, SessionLocal, Base
+from models.seed_data import seed_properties
+
+# Auto-create tables in PostgreSQL database
+Base.metadata.create_all(bind=engine)
+
+# Seed property records on startup if needed
+db = SessionLocal()
+try:
+    seed_properties(db)
+finally:
+    db.close()
+
 app = FastAPI(
     title="EcoStay API",
-    description="Simple In-Memory FastAPI Backend for EcoStay Homestay Platform",
+    description="Persistent PostgreSQL-backed FastAPI Backend for EcoStay Homestay Platform",
     version="1.0.0"
 )
 

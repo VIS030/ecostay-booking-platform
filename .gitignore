@@ -22,3 +22,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment files
+.env
+backend/.env
+
+# Python
+backend/__pycache__/
+backend/*.pyc
+
+# Python cache
+__pycache__/
+*.pyc
+
+# SQLite database
+*.db
+backend/ecostay.db

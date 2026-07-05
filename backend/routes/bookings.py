@@ -4,9 +4,11 @@ import razorpay
 from datetime import datetime
 from fastapi import APIRouter, HTTPException, Depends, status
 from typing import List
-from models.booking_store import bookings_db
-from models.wishlist_store import wishlist_db
-from models.property_store import properties_db
+from sqlalchemy.orm import Session
+from sqlalchemy.orm.attributes import flag_modified
+
+from database import get_db
+from models.db_models import User, Property, Booking
 from routes.auth import get_current_user
 from schemas.booking import BookingCreate, BookingOut, BookingOrderOut, PaymentVerify
 from schemas.property import PropertyOut
@@ -23,17 +25,14 @@ except Exception:
 
 router = APIRouter(tags=["Bookings & Wishlist"])
 
-def find_property_by_id(property_id: str) -> dict:
-    for p in properties_db:
-        if p["id"] == property_id or p["slug"] == property_id:
-            return p
-    return None
+def find_property_by_id(property_id: str, db: Session) -> Property:
+    return db.query(Property).filter((Property.id == property_id) | (Property.slug == property_id)).first()
 
 # ==================== BOOKINGS SYSTEM ====================
 
 @router.post("/bookings", response_model=BookingOrderOut, status_code=status.HTTP_201_CREATED)
-def create_booking(payload: BookingCreate, current_user: dict = Depends(get_current_user)):
-    property_item = find_property_by_id(payload.propertyId)
+def create_booking(payload: BookingCreate, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    property_item = find_property_by_id(payload.propertyId, db)
     if not property_item:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -61,14 +60,14 @@ def create_booking(payload: BookingCreate, current_user: dict = Depends(get_curr
             detail="Guests count must be at least 1"
         )
 
-    if payload.guests > property_item["maxGuests"]:
+    if payload.guests > property_item.maxGuests:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=f"Number of guests exceeds property max capacity of {property_item['maxGuests']}"
+            detail=f"Number of guests exceeds property max capacity of {property_item.maxGuests}"
         )
 
     nights = (date_out - date_in).days
-    total_price = property_item["price"] * nights
+    total_price = property_item.price * nights
     amount_inr = int(total_price * 83) # 1 USD = 83 INR
 
     booking_id = f"b-{str(uuid.uuid4())[:8]}"
@@ -86,21 +85,23 @@ def create_booking(payload: BookingCreate, current_user: dict = Depends(get_curr
         except Exception as e:
             print(f"Razorpay API call failed, using dummy order id. Error: {e}")
     
-    new_booking = {
-        "id": booking_id,
-        "userId": current_user["id"],
-        "propertyId": property_item["id"],
-        "propertyTitle": property_item["title"],
-        "propertyImage": property_item["images"][0] if property_item["images"] else "",
-        "location": f"{property_item['location']['city']}, {property_item['location']['country']}",
-        "checkIn": payload.checkIn,
-        "checkOut": payload.checkOut,
-        "guests": payload.guests,
-        "total": float(total_price),
-        "status": "pending"
-    }
+    new_booking = Booking(
+        id=booking_id,
+        userId=current_user.id,
+        propertyId=property_item.id,
+        propertyTitle=property_item.title,
+        propertyImage=property_item.images[0] if property_item.images else "",
+        location=f"{property_item.location['city']}, {property_item.location['country']}",
+        checkIn=payload.checkIn,
+        checkOut=payload.checkOut,
+        guests=payload.guests,
+        total=float(total_price),
+        status="pending"
+    )
 
-    bookings_db.append(new_booking)
+    db.add(new_booking)
+    db.commit()
+    db.refresh(new_booking)
     
     return {
         "booking": new_booking,
@@ -111,21 +112,15 @@ def create_booking(payload: BookingCreate, current_user: dict = Depends(get_curr
     }
 
 @router.post("/bookings/verify-payment", response_model=BookingOut)
-def verify_payment(payload: PaymentVerify, current_user: dict = Depends(get_current_user)):
-    found_idx = -1
-    for idx, b in enumerate(bookings_db):
-        if b["id"] == payload.bookingId and b["userId"] == current_user["id"]:
-            found_idx = idx
-            break
-
-    if found_idx == -1:
+def verify_payment(payload: PaymentVerify, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    booking = db.query(Booking).filter(Booking.id == payload.bookingId, Booking.userId == current_user.id).first()
+    if not booking:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Booking not found"
         )
 
-    booking = bookings_db[found_idx]
-    if booking["status"] != "pending":
+    if booking.status != "pending":
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Booking has already been processed"
@@ -147,92 +142,87 @@ def verify_payment(payload: PaymentVerify, current_user: dict = Depends(get_curr
                 detail=f"Payment signature verification failed: {e}"
             )
 
-    booking["status"] = "upcoming"
-    bookings_db[found_idx] = booking
+    booking.status = "upcoming"
     
-    current_user["stats"]["trips"] += 1
+    # Adjust trips count
+    stats = dict(current_user.stats)
+    stats["trips"] = stats.get("trips", 0) + 1
+    current_user.stats = stats
+    flag_modified(current_user, "stats")
     
+    db.commit()
+    db.refresh(booking)
     return booking
 
 @router.get("/bookings/my-bookings", response_model=List[BookingOut])
-def get_my_bookings(current_user: dict = Depends(get_current_user)):
-    user_bookings = [b for b in bookings_db if b["userId"] == current_user["id"]]
-    return user_bookings
+def get_my_bookings(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    return db.query(Booking).filter(Booking.userId == current_user.id).all()
 
 @router.get("/bookings/{id}", response_model=BookingOut)
-def get_booking_by_id(id: str, current_user: dict = Depends(get_current_user)):
-    for b in bookings_db:
-        if b["id"] == id and b["userId"] == current_user["id"]:
-            return b
-    raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND,
-        detail="Booking not found"
-    )
+def get_booking_by_id(id: str, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    booking = db.query(Booking).filter(Booking.id == id, Booking.userId == current_user.id).first()
+    if not booking:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Booking not found"
+        )
+    return booking
 
 @router.post("/bookings/{id}/cancel", response_model=BookingOut)
-def cancel_booking(id: str, current_user: dict = Depends(get_current_user)):
-    found_idx = -1
-    for idx, b in enumerate(bookings_db):
-        if b["id"] == id and b["userId"] == current_user["id"]:
-            found_idx = idx
-            break
-
-    if found_idx == -1:
+def cancel_booking(id: str, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    booking = db.query(Booking).filter(Booking.id == id, Booking.userId == current_user.id).first()
+    if not booking:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Booking not found or access denied"
         )
 
-    booking = bookings_db[found_idx]
-    if booking["status"] == "cancelled":
+    if booking.status == "cancelled":
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Booking is already cancelled"
         )
 
-    booking["status"] = "cancelled"
-    bookings_db[found_idx] = booking
+    booking.status = "cancelled"
     
     # Adjust statistics
-    if current_user["stats"]["trips"] > 0:
-        current_user["stats"]["trips"] -= 1
-
+    stats = dict(current_user.stats)
+    if stats.get("trips", 0) > 0:
+        stats["trips"] -= 1
+    current_user.stats = stats
+    flag_modified(current_user, "stats")
+    
+    db.commit()
+    db.refresh(booking)
     return booking
 
 # ==================== WISHLIST SYSTEM ====================
 
 @router.get("/wishlist", response_model=List[PropertyOut])
-def get_my_wishlist(current_user: dict = Depends(get_current_user)):
-    user_wishlist_ids = wishlist_db.get(current_user["id"], [])
-    wishlisted_properties = [p for p in properties_db if p["id"] in user_wishlist_ids]
-    return wishlisted_properties
+def get_my_wishlist(current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    return current_user.wishlisted_properties
 
 @router.post("/wishlist/{property_id}", response_model=List[PropertyOut])
-def toggle_wishlist(property_id: str, current_user: dict = Depends(get_current_user)):
-    # Validate property exists
-    property_item = find_property_by_id(property_id)
+def toggle_wishlist(property_id: str, current_user: User = Depends(get_current_user), db: Session = Depends(get_db)):
+    property_item = find_property_by_id(property_id, db)
     if not property_item:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Property not found"
         )
     
-    user_id = current_user["id"]
-    if user_id not in wishlist_db:
-        wishlist_db[user_id] = []
-
-    user_wishlist = wishlist_db[user_id]
-    target_id = property_item["id"]
-    
-    if target_id in user_wishlist:
-        user_wishlist.remove(target_id)
+    if property_item in current_user.wishlisted_properties:
+        current_user.wishlisted_properties.remove(property_item)
     else:
-        user_wishlist.append(target_id)
+        current_user.wishlisted_properties.append(property_item)
         
-    wishlist_db[user_id] = user_wishlist
-    
     # Sync statistic count
-    current_user["stats"]["wishlist"] = len(user_wishlist)
+    stats = dict(current_user.stats)
+    stats["wishlist"] = len(current_user.wishlisted_properties)
+    current_user.stats = stats
+    flag_modified(current_user, "stats")
     
-    # Return updated list of wishlisted properties
-    return [p for p in properties_db if p["id"] in user_wishlist]
+    db.commit()
+    db.refresh(current_user)
+    
+    return current_user.wishlisted_properties
