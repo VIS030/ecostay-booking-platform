@@ -1,23 +1,15 @@
-import hashlib
-import uuid
-from typing import Dict, Optional
-
-# In-memory stores
-users_db: Dict[str, dict] = {}       # maps user_id -> user details dict
-sessions_db: Dict[str, str] = {}    # maps token -> user_id
+import bcrypt
+from typing import Optional
 
 def hash_password(password: str) -> str:
-    """Hash password using SHA-256 for a secure, database-compatible storage format."""
-    return hashlib.sha256(password.encode()).hexdigest()
+    """Hash password using bcrypt for secure storage."""
+    salt = bcrypt.gensalt(rounds=12)
+    hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hashed.decode('utf-8')
 
 def verify_password(password: str, password_hash: str) -> bool:
-    """Verify password matches hash."""
-    return hash_password(password) == password_hash
-
-def get_user_by_email(email: str) -> Optional[dict]:
-    """Retrieve user details by email."""
-    normalized_email = email.strip().lower()
-    for user in users_db.values():
-        if user["email"].strip().lower() == normalized_email:
-            return user
-    return None
+    """Verify standard string password matches the stored bcrypt hash."""
+    try:
+        return bcrypt.checkpw(password.encode('utf-8'), password_hash.encode('utf-8'))
+    except Exception:
+        return False

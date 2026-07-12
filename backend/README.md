@@ -42,3 +42,15 @@ The server runs at `http://localhost:8000`. Documentation will be auto-generated
 ### Database Lifecycles
 - Table creation: Tables are automatically synchronized and created on startup if they do not exist.
 - Seeding: Stays are automatically seeded with 62 properties from `property_store.py` when the server starts if the properties table is empty.
+
+## Security & Authentication (Week 6)
+
+- **Bcrypt Hashing**: User registration securely hashes passwords with bcrypt (12 rounds) before persisting them.
+- **JWT Session Tokens**: Session management runs on HS256 JWT access tokens with a 7-day expiration period. Set `JWT_SECRET` in `.env`.
+- **Rate Limiting**: Rate limiting restricts registration and login attempts to 5 requests per minute using `slowapi`. Exceeding this limit returns HTTP `429 Too Many Requests`.
+- **Input Validation**: Request bodies validate strict email regex patterns and enforce a minimum password length of 8 characters, returning HTTP `400 Bad Request` on failure.
+- **GitHub OAuth 2.0**:
+  - Redirects users to GitHub's consent screen via `/api/auth/github/login`.
+  - If no developer credentials are configured in `.env`, the server automatically provides a mock authorization callback simulation, enabling full end-to-end testing.
+  - Redirects validated sessions back to the React UI dashboard with the signed JWT token.
+

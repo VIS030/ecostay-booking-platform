@@ -2,14 +2,14 @@ from pydantic import BaseModel, EmailStr, Field
 from typing import Optional, Dict
 
 class UserRegister(BaseModel):
-    email: str
-    password: str
+    email: str = Field(..., pattern=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+    password: str = Field(..., min_length=8)
     name: str
     location: Optional[str] = "India"
 
 class UserLogin(BaseModel):
-    email: str
-    password: str
+    email: str = Field(..., pattern=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+    password: str = Field(..., min_length=8)
 
 class UserStatsSchema(BaseModel):
     trips: int = 0

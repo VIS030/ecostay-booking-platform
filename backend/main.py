@@ -17,11 +17,32 @@ try:
 finally:
     db.close()
 
+from slowapi.errors import RateLimitExceeded
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
+from routes.auth import limiter
+
 app = FastAPI(
     title="EcoStay API",
     description="Persistent PostgreSQL-backed FastAPI Backend for EcoStay Homestay Platform",
     version="1.0.0"
 )
+
+app.state.limiter = limiter
+
+@app.exception_handler(RateLimitExceeded)
+def rate_limit_exceeded_handler(request, exc):
+    return JSONResponse(
+        status_code=429,
+        content={"detail": "Too many requests. Please try again later."}
+    )
+
+@app.exception_handler(RequestValidationError)
+def validation_exception_handler(request, exc):
+    return JSONResponse(
+        status_code=400,
+        content={"detail": "Input validation failed", "errors": exc.errors()}
+    )
 
 # Configure CORS origins
 origins = [
