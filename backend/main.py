@@ -1,8 +1,12 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.properties import router as properties_router
 from routes.auth import router as auth_router
 from routes.bookings import router as bookings_router
+from routes.ai import router as ai_router
 
 from database import engine, SessionLocal, Base
 from models.seed_data import seed_properties
@@ -64,6 +68,7 @@ app.add_middleware(
 app.include_router(properties_router, prefix="/api")
 app.include_router(auth_router, prefix="/api")
 app.include_router(bookings_router, prefix="/api")
+app.include_router(ai_router, prefix="/api")
 
 @app.get("/")
 def read_root():

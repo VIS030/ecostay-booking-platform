@@ -7,6 +7,7 @@ const navLinks = [
   { to: '/listings', label: 'Stays', match: (pathname) => pathname === '/listings' },
   { to: '/destinations', label: 'Destinations', match: (pathname) => pathname === '/destinations' },
   { to: '/experiences', label: 'Experiences', match: (pathname) => pathname === '/experiences' },
+  { to: '/ai-assistant', label: 'AI Planner', match: (pathname) => pathname === '/ai-assistant' },
   { to: '/about', label: 'About', match: (pathname) => pathname === '/about' },
 ];
 

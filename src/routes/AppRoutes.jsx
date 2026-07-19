@@ -15,6 +15,7 @@ import DestinationsPage from '../pages/DestinationsPage';
 import ExperiencesPage from '../pages/ExperiencesPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ProtectedRoute from '../components/auth/ProtectedRoute';
+import AIChatPage from '../pages/AIChatPage';
 
 function Layout({ children, showFooter = true }) {
   return (
@@ -40,6 +41,7 @@ export default function AppRoutes() {
       <Route path="/forgot-password" element={<Layout showFooter={false}><ForgotPasswordPage /></Layout>} />
       <Route path="/booking-confirmation" element={<Layout><ProtectedRoute><BookingConfirmationPage /></ProtectedRoute></Layout>} />
       <Route path="/dashboard" element={<Layout><ProtectedRoute><DashboardPage /></ProtectedRoute></Layout>} />
+      <Route path="/ai-assistant" element={<Layout><ProtectedRoute><AIChatPage /></ProtectedRoute></Layout>} />
       <Route path="/about" element={<Layout><AboutPage /></Layout>} />
       <Route path="*" element={<Layout><NotFoundPage /></Layout>} />
     </Routes>

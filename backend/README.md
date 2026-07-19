@@ -54,3 +54,10 @@ The server runs at `http://localhost:8000`. Documentation will be auto-generated
   - If no developer credentials are configured in `.env`, the server automatically provides a mock authorization callback simulation, enabling full end-to-end testing.
   - Redirects validated sessions back to the React UI dashboard with the signed JWT token.
 
+## AI Travel Assistant (Week 7)
+
+- **Groq API Integration**: Generates contextual responses using the `llama-3.3-70b-versatile` LLM model via the official `groq` SDK. Configure `GROQ_API_KEY` in `.env`.
+- **Database Context Injection**: Automatically queries the active PostgreSQL listings table and injects properties info into the system prompt context, enabling the AI to suggest real, bookable EcoStay properties.
+- **Failsafe Mock Mode**: If `GROQ_API_KEY` is a placeholder, the backend returns a realistic mock recommendation list generated from active properties data.
+- **HTTP Code Handling**: Gracefully maps Groq authentication failures (`401`), rate limits (`429`), network timeouts (`504`), and request issues (`400`).
+

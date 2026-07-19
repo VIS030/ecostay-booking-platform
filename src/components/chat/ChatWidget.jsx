@@ -1,22 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { aiService } from '../../services/aiService';
 
 const SUGGESTIONS = [
-  'Find eco beach stays in Bali under $100',
-  'Best mountain cabins for 4 guests',
-  'Rainforest lodges in Costa Rica',
-  'Pet-friendly farm stays in Europe',
+  'Suggest a peaceful homestay in Shimla',
+  'Plan a 3-day trip to Manali under ₹8000',
+  'Best homestays for families in Mussoorie',
+  'Weekend getaway near Rishikesh',
 ];
 
 const WELCOME = {
   role: 'assistant',
-  text: "Hi! I'm your EcoStay travel assistant. Tell me what kind of trip you're planning — destination, budget, dates — and I'll help you find the perfect eco-friendly stay. (AI integration coming soon)",
+  text: "Hi! I'm your EcoStay AI travel assistant powered by Groq. Tell me what kind of trip you're planning — destination, budget, dates — and I'll help you find the perfect eco-friendly stay across India!",
 };
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([WELCOME]);
+  const [loading, setLoading] = useState(false);
   const bottomRef = useRef(null);
   const navigate = useNavigate();
 
@@ -24,18 +26,43 @@ export default function ChatWidget() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, open]);
 
-  const sendMessage = (text) => {
-    if (!text.trim()) return;
-    setMessages((prev) => [
-      ...prev,
-      { role: 'user', text: text.trim() },
-      {
-        role: 'assistant',
-        text: "Thanks! Once AI is connected, I'll search our listings and recommend the best eco-stays for you. For now, browse all stays on our listings page.",
-        action: { label: 'View all stays', path: '/listings' },
-      },
-    ]);
+  const sendMessage = async (text) => {
+    const trimmed = (text || '').trim();
+    if (!trimmed || loading) return;
+
     setInput('');
+    setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
+    setLoading(true);
+
+    try {
+      // Build history from past messages (excluding the static welcome message)
+      const history = messages
+        .filter((m) => m !== WELCOME)
+        .map((m) => ({ role: m.role, content: m.text }));
+
+      const res = await aiService.askTravelAssistant(trimmed, history);
+
+      if (res.success) {
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', text: res.response },
+        ]);
+      } else {
+        throw new Error(res.detail || 'Failed to get AI response');
+      }
+    } catch (err) {
+      console.error('ChatWidget AI error:', err);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          text: '⚠️ Sorry, I couldn\'t reach the AI service right now. Please make sure the backend server is running.',
+          action: { label: 'Browse stays instead', path: '/listings' },
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,7 +78,7 @@ export default function ChatWidget() {
               </div>
               <div>
                 <p className="text-sm font-bold">EcoStay Assistant</p>
-                <p className="text-xs text-white/80">Find your perfect stay</p>
+                <p className="text-xs text-white/80">AI-powered travel planner</p>
               </div>
             </div>
             <button
@@ -78,7 +105,7 @@ export default function ChatWidget() {
                       : 'rounded-bl-md border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-800 text-[#222222] dark:text-slate-100'
                   }`}
                 >
-                  {msg.text}
+                  <span className="whitespace-pre-wrap">{msg.text}</span>
                   {msg.action && (
                     <button
                       onClick={() => navigate(msg.action.path)}
@@ -90,6 +117,15 @@ export default function ChatWidget() {
                 </div>
               </div>
             ))}
+            {loading && (
+              <div className="mb-3 flex justify-start">
+                <div className="rounded-2xl rounded-bl-md border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-800 px-4 py-3 flex items-center gap-1.5">
+                  <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms', animationDuration: '1s' }}></div>
+                  <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms', animationDuration: '1s' }}></div>
+                  <div className="h-2 w-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms', animationDuration: '1s' }}></div>
+                </div>
+              </div>
+            )}
             <div ref={bottomRef} />
           </div>
 
@@ -99,7 +135,8 @@ export default function ChatWidget() {
                 <button
                   key={s}
                   onClick={() => sendMessage(s)}
-                  className="shrink-0 rounded-full border border-[#dddddd] dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 text-xs text-[#717171] dark:text-slate-300 hover:border-[#2068a2] dark:hover:border-blue-400 hover:text-[#2068a2] dark:hover:text-blue-400 cursor-pointer"
+                  disabled={loading}
+                  className="shrink-0 rounded-full border border-[#dddddd] dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 text-xs text-[#717171] dark:text-slate-300 hover:border-[#2068a2] dark:hover:border-blue-400 hover:text-[#2068a2] dark:hover:text-blue-400 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {s}
                 </button>
@@ -116,12 +153,14 @@ export default function ChatWidget() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                disabled={loading}
                 placeholder="Ask about destinations, budget, dates..."
-                className="flex-1 rounded-full border border-[#dddddd] dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2.5 text-sm text-[#222222] dark:text-white placeholder:text-[#717171] dark:placeholder:text-slate-500 focus:border-[#2068a2] dark:focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-[#2068a2] dark:focus:ring-blue-500"
+                className="flex-1 rounded-full border border-[#dddddd] dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2.5 text-sm text-[#222222] dark:text-white placeholder:text-[#717171] dark:placeholder:text-slate-500 focus:border-[#2068a2] dark:focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-[#2068a2] dark:focus:ring-blue-500 disabled:opacity-50"
               />
               <button
                 type="submit"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2068a2] text-white hover:bg-[#174d78] cursor-pointer"
+                disabled={loading || !input.trim()}
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#2068a2] text-white hover:bg-[#174d78] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Send message"
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
