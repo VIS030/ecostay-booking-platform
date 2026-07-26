@@ -4,6 +4,7 @@ import PropertyCard from '../components/property/PropertyCard';
 import FilterSidebar from '../components/listings/FilterSidebar';
 import SearchBar from '../components/search/SearchBar';
 import Loader from '../components/ui/Loader';
+import EmptyStateBlock from '../components/ui/EmptyStateBlock';
 import { propertyService } from '../services/propertyService';
 
 const ITEMS_PER_PAGE = 5;
@@ -133,13 +134,13 @@ export default function ListingsPage() {
                 <Loader size="lg" />
               </div>
             ) : paginatedProperties.length === 0 ? (
-              <div className="rounded-lg border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-900 p-12 text-center">
-                <h2 className="text-xl font-bold text-[#222222] dark:text-white">No properties match your search</h2>
-                <p className="mt-2 text-[#717171] dark:text-slate-400">Try different dates or filters</p>
-                <button onClick={handleClearFilters} className="mt-4 text-sm font-semibold text-[#2068a2] dark:text-blue-400 underline cursor-pointer">
-                  Clear all filters
-                </button>
-              </div>
+              <EmptyStateBlock
+                icon="🏡"
+                title="No properties match your search"
+                description="Try adjusting your budget, guest count, or clearing search filters to see more stays."
+                actionLabel="Clear all filters"
+                onAction={handleClearFilters}
+              />
             ) : (
               <>
                 <div className="space-y-4">

@@ -1,23 +1,78 @@
-import {
-  properties,
-  destinations,
-  categories,
-  testimonials,
-  whyChooseUs,
-  reviews,
-  dashboardUser,
-  bookings,
-  wishlist,
-  recentActivity,
-} from './mockData';
-
 import apiClient from './api';
 import { indiaDestinations } from './destinationsData';
 
-const delay = (ms = 300) => new Promise((resolve) => setTimeout(resolve, ms));
+/**
+ * Static UI content — these define display labels and categories,
+ * not backend-managed resources. Moved here from mockData.js.
+ */
+const categories = [
+  { id: 'mountain', name: 'Mountain Retreats', icon: '⛰️', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80' },
+  { id: 'forest', name: 'Forest Cabins', icon: '🌲', image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&q=80' },
+  { id: 'beach', name: 'Coastal Eco-Lodges', icon: '🏖️', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80' },
+  { id: 'farm', name: 'Farm Stays', icon: '🌾', image: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=600&q=80' },
+  { id: 'jungle', name: 'Jungle Hideaways', icon: '🦜', image: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=600&q=80' },
+  { id: 'desert', name: 'Desert Camps', icon: '🏜️', image: 'https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=600&q=80' },
+];
+
+const testimonials = [
+  {
+    id: '1',
+    name: 'Sarah Mitchell',
+    location: 'London, UK',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&q=80',
+    rating: 5,
+    text: 'EcoStay made it effortless to find genuinely sustainable accommodations. Our forest cabin in Costa Rica was magical — solar-powered, zero-waste, and the hosts were incredible.',
+    property: 'Canopy Rainforest Lodge',
+  },
+  {
+    id: '2',
+    name: 'James Chen',
+    location: 'Singapore',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80',
+    rating: 5,
+    text: 'The booking experience felt as polished as any major platform, but with a soul. Every property we stayed at had verified eco-credentials. Highly recommend for conscious travelers.',
+    property: 'Alpine Meadow Chalet',
+  },
+  {
+    id: '3',
+    name: 'Elena Rodriguez',
+    location: 'Barcelona, Spain',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&q=80',
+    rating: 5,
+    text: 'From search to checkout, everything was seamless. The detailed amenity filters helped us find a perfect farm stay for our family. Kids loved it, and so did the planet.',
+    property: 'Green Valley Farmhouse',
+  },
+];
+
+const whyChooseUs = [
+  {
+    id: 'verified',
+    title: 'Verified Eco-Credentials',
+    description: 'Every listing is vetted for sustainability practices — renewable energy, waste reduction, and local community support.',
+    icon: '✓',
+  },
+  {
+    id: 'local',
+    title: 'Authentic Local Experiences',
+    description: 'Stay with hosts who share their culture, cuisine, and knowledge of hidden natural gems off the tourist trail.',
+    icon: '🌍',
+  },
+  {
+    id: 'carbon',
+    title: 'Carbon-Neutral Bookings',
+    description: 'We offset 100% of booking emissions and partner with reforestation projects in the regions you visit.',
+    icon: '🌱',
+  },
+  {
+    id: 'support',
+    title: '24/7 Travel Support',
+    description: 'Our dedicated eco-travel specialists are available around the clock to help plan your perfect sustainable getaway.',
+    icon: '💬',
+  },
+];
 
 /**
- * Property service – swap implementations to use apiClient when backend is ready.
+ * Property service — all data fetched from the FastAPI backend.
  */
 export const propertyService = {
   async getAll(filters = {}) {
@@ -75,7 +130,6 @@ export const propertyService = {
     try {
       return await apiClient.get(`/properties/${id}`);
     } catch (err) {
-      // Fallback/Error handle matches original expectations
       throw new Error('Property not found');
     }
   },
@@ -86,8 +140,8 @@ export const propertyService = {
   },
 
   async getReviews(propertyId) {
-    await delay();
-    return reviews.filter((r) => r.propertyId === propertyId);
+    // TODO: Replace with backend endpoint when reviews API is implemented
+    return [];
   },
 
   async create(propertyData) {
@@ -105,47 +159,20 @@ export const propertyService = {
 
 export const destinationService = {
   async getAll() {
-    await delay();
     return indiaDestinations;
   },
 };
 
 export const contentService = {
   async getCategories() {
-    await delay();
     return categories;
   },
 
   async getTestimonials() {
-    await delay();
     return testimonials;
   },
 
   async getWhyChooseUs() {
-    await delay();
     return whyChooseUs;
-  },
-};
-
-export const dashboardService = {
-  async getUser() {
-    await delay();
-    return dashboardUser;
-  },
-
-  async getBookings() {
-    await delay();
-    return bookings;
-  },
-
-  async getWishlist() {
-    await delay();
-    const ids = wishlist.map((w) => w.propertyId);
-    return properties.filter((p) => ids.includes(p.id));
-  },
-
-  async getRecentActivity() {
-    await delay();
-    return recentActivity;
   },
 };

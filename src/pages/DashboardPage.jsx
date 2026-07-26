@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import PropertyCard from '../components/property/PropertyCard';
 import Loader from '../components/ui/Loader';
 import Button from '../components/ui/Button';
+import Modal from '../components/ui/Modal';
+import EmptyStateBlock from '../components/ui/EmptyStateBlock';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import apiClient from '../services/api';
@@ -78,13 +80,21 @@ export default function DashboardPage() {
     fetchDashboardData();
   }, [fetchDashboardData]);
 
-  const handleCancelBooking = async (bookingId) => {
+  const [cancelModalBooking, setCancelModalBooking] = useState(null);
+  const [cancelling, setCancelling] = useState(false);
+
+  const confirmCancelBooking = async () => {
+    if (!cancelModalBooking) return;
+    setCancelling(true);
     try {
-      await apiClient.post(`/bookings/${bookingId}/cancel`);
+      await apiClient.post(`/bookings/${cancelModalBooking.id}/cancel`);
       showToast({ message: 'Booking request cancelled successfully.', type: 'success' });
+      setCancelModalBooking(null);
       fetchDashboardData();
     } catch (err) {
       showToast({ message: err.message || 'Failed to cancel booking', type: 'error' });
+    } finally {
+      setCancelling(false);
     }
   };
 
@@ -259,7 +269,7 @@ export default function DashboardPage() {
                         <Button
                           variant="outline"
                           size="sm"
-                          onClick={() => handleCancelBooking(booking.id)}
+                          onClick={() => setCancelModalBooking(booking)}
                           className="text-red-500 dark:text-red-400 border-red-200 dark:border-red-950 hover:bg-red-50 dark:hover:bg-red-950/20"
                         >
                           Cancel trip
@@ -274,9 +284,13 @@ export default function DashboardPage() {
               </div>
             ))
           ) : (
-            <p className="text-center text-[#717171] dark:text-slate-400 py-8">
-              No bookings found in this category.
-            </p>
+            <EmptyStateBlock
+              icon="🧳"
+              title="No bookings found"
+              description={bookingFilter === 'active' ? "You don't have any active or upcoming trips planned right now." : "You have no cancelled trips."}
+              actionLabel={bookingFilter === 'active' ? "Explore Eco-Stays" : undefined}
+              actionTo={bookingFilter === 'active' ? "/listings" : undefined}
+            />
           )}
         </div>
       )}
@@ -289,7 +303,13 @@ export default function DashboardPage() {
               <PropertyCard key={property.id} property={property} />
             ))
           ) : (
-            <p className="col-span-full text-center text-[#717171] dark:text-slate-400 py-6">Your wishlist is empty.</p>
+            <EmptyStateBlock
+              icon="💖"
+              title="Your wishlist is empty"
+              description="Save your favourite eco-friendly homestays and retreats here for easy access."
+              actionLabel="Discover Homestays"
+              actionTo="/listings"
+            />
           )}
         </div>
       )}
@@ -302,10 +322,51 @@ export default function DashboardPage() {
               <PropertyCard key={property.id} property={property} />
             ))
           ) : (
-            <p className="col-span-full text-center text-[#717171] dark:text-slate-400 py-6">No recently viewed stays.</p>
+            <EmptyStateBlock
+              icon="👁️"
+              title="No recently viewed stays"
+              description="Properties you view will show up here so you can easily revisit them."
+              actionLabel="Browse Listings"
+              actionTo="/listings"
+            />
           )}
         </div>
       )}
+
+      {/* Cancel Confirmation Modal */}
+      <Modal
+        isOpen={!!cancelModalBooking}
+        onClose={() => !cancelling && setCancelModalBooking(null)}
+        title="Cancel Booking Request"
+      >
+        <div className="space-y-4">
+          <p className="text-sm text-[#717171] dark:text-slate-300">
+            Are you sure you want to cancel your booking request for{' '}
+            <strong className="text-[#222222] dark:text-white">
+              {cancelModalBooking?.propertyTitle}
+            </strong>
+            ? This action cannot be undone.
+          </p>
+          <div className="flex justify-end gap-3 pt-2">
+            <Button
+              variant="outline"
+              size="sm"
+              disabled={cancelling}
+              onClick={() => setCancelModalBooking(null)}
+            >
+              Keep Booking
+            </Button>
+            <Button
+              size="sm"
+              loading={cancelling}
+              onClick={confirmCancelBooking}
+              className="bg-red-600 hover:bg-red-700 text-white"
+            >
+              Confirm Cancel
+            </Button>
+          </div>
+        </div>
+      </Modal>
 
       {/* Account Settings */}
       {activeTab === 'settings' && (

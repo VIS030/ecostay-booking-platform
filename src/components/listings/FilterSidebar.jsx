@@ -1,4 +1,13 @@
-import { amenitiesList, propertyTypes } from '../../services/mockData';
+const amenitiesList = [
+  'WiFi', 'Solar Power', 'Organic Breakfast', 'Kitchen', 'Hot Tub',
+  'Fireplace', 'Mountain View', 'Pet Friendly', 'EV Charging', 'Rainwater Harvesting',
+  'Composting', 'Hiking Trails', 'Wildlife Watching', 'Yoga Deck', 'Farm-to-Table',
+];
+
+const propertyTypes = [
+  'Mountain Cabin', 'Forest Lodge', 'Beach Bungalow', 'Farm Stay',
+  'Jungle Treehouse', 'Desert Camp', 'Eco Villa', 'Glamping Tent',
+];
 
 export default function FilterSidebar({ filters, onChange, onClear, className = '' }) {
   const toggleAmenity = (amenity) => {
