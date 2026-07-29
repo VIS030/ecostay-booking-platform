@@ -14,9 +14,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 22,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -59,9 +59,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 29,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -104,9 +104,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 36,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -149,9 +149,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 43,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -194,8 +194,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 50,
         "images": [
-            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
-            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+            "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80",
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
         ],
         "category": "Glamping Tent",
         "propertyType": "Glamping Tent",
@@ -238,9 +239,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 57,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80",
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -283,9 +284,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 64,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -328,8 +329,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 71,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -372,8 +374,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 78,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -416,9 +419,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 85,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -461,8 +464,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 92,
         "images": [
-            "https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=800&q=80",
-            "https://images.unsplash.com/photo-1451337516015-6b5e72a67289?w=800&q=80"
+            "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=800&q=80",
+            "https://images.unsplash.com/photo-1531804055935-76f44d7c3621?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Desert Camp",
         "propertyType": "Desert Camp",
@@ -505,8 +509,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 99,
         "images": [
-            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
-            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+            "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=800&q=80",
+            "https://images.unsplash.com/photo-1531804055935-76f44d7c3621?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Glamping Tent",
         "propertyType": "Glamping Tent",
@@ -549,9 +554,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 106,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1566224340124-7888b5324c40?w=800&q=80",
+            "https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -594,8 +599,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 113,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1566224340124-7888b5324c40?w=800&q=80",
+            "https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -638,9 +644,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 120,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -683,9 +689,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 127,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -728,9 +734,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 134,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -773,9 +779,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 141,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -818,9 +824,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 148,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -863,8 +869,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 155,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -907,8 +914,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 162,
         "images": [
-            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
-            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+            "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=800&q=80",
+            "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80",
+            "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80"
         ],
         "category": "Glamping Tent",
         "propertyType": "Glamping Tent",
@@ -951,9 +959,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 169,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?w=800&q=80",
+            "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80",
+            "https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -996,9 +1004,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 176,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -1041,8 +1049,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 183,
         "images": [
-            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
-            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+            "https://images.unsplash.com/photo-1598091383021-15ddea10925d?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
         ],
         "category": "Glamping Tent",
         "propertyType": "Glamping Tent",
@@ -1085,8 +1094,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 190,
         "images": [
-            "https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=800&q=80",
-            "https://images.unsplash.com/photo-1451337516015-6b5e72a67289?w=800&q=80"
+            "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=800&q=80",
+            "https://images.unsplash.com/photo-1531804055935-76f44d7c3621?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Desert Camp",
         "propertyType": "Desert Camp",
@@ -1129,9 +1139,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 197,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=800&q=80",
+            "https://images.unsplash.com/photo-1531804055935-76f44d7c3621?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -1174,9 +1184,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 204,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80",
+            "https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -1219,8 +1229,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 211,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80",
+            "https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -1263,9 +1274,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 218,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80",
+            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -1308,8 +1319,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 225,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80",
+            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -1353,7 +1365,8 @@ properties_db = json.loads(r'''[
         "reviewCount": 232,
         "images": [
             "https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=800&q=80",
-            "https://images.unsplash.com/photo-1451337516015-6b5e72a67289?w=800&q=80"
+            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=800&q=80"
         ],
         "category": "Desert Camp",
         "propertyType": "Desert Camp",
@@ -1396,8 +1409,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 239,
         "images": [
-            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
-            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+            "https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=800&q=80",
+            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            "https://images.unsplash.com/photo-1581793745862-99fde7fa73d2?w=800&q=80"
         ],
         "category": "Glamping Tent",
         "propertyType": "Glamping Tent",
@@ -1440,9 +1454,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 246,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -1485,9 +1499,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 253,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -1530,9 +1544,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 260,
         "images": [
-            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80"
+            "https://images.unsplash.com/photo-1512343800234-882532367801?w=800&q=80",
+            "https://images.unsplash.com/photo-1582610116397-c0b7256ae4f2?w=800&q=80",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80"
         ],
         "category": "Beach Bungalow",
         "propertyType": "Beach Bungalow",
@@ -1575,9 +1589,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 17,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1512343800234-882532367801?w=800&q=80",
+            "https://images.unsplash.com/photo-1582610116397-c0b7256ae4f2?w=800&q=80",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -1620,9 +1634,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 24,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -1665,8 +1679,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 31,
         "images": [
-            "https://images.unsplash.com/photo-1513836279014-a89e7a99ae05?w=800&q=80",
-            "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80"
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
         ],
         "category": "Jungle Treehouse",
         "propertyType": "Jungle Treehouse",
@@ -1709,8 +1724,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 38,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80"
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Cottage",
         "propertyType": "Cottage",
@@ -1753,9 +1769,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 45,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1597074866923-dc0589150358?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -1798,9 +1814,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 52,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -1843,8 +1859,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 59,
         "images": [
-            "https://images.unsplash.com/photo-1513836279014-a89e7a99ae05?w=800&q=80",
-            "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80"
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80"
         ],
         "category": "Jungle Treehouse",
         "propertyType": "Jungle Treehouse",
@@ -1887,8 +1904,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 66,
         "images": [
-            "https://images.unsplash.com/photo-1513836279014-a89e7a99ae05?w=800&q=80",
-            "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80"
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80"
         ],
         "category": "Jungle Treehouse",
         "propertyType": "Jungle Treehouse",
@@ -1931,9 +1949,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 73,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -1976,9 +1994,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 80,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80",
+            "https://images.unsplash.com/photo-1512343800234-882532367801?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -2021,8 +2039,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 87,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80",
+            "https://images.unsplash.com/photo-1512343800234-882532367801?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -2065,8 +2084,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 94,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1600100397608-f010e423b971?w=800&q=80",
+            "https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=800&q=80",
+            "https://images.unsplash.com/photo-1582610116397-c0b7256ae4f2?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -2109,8 +2129,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 101,
         "images": [
-            "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80",
-            "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80"
+            "https://images.unsplash.com/photo-1600100397608-f010e423b971?w=800&q=80",
+            "https://images.unsplash.com/photo-1509316781280-0255d2b4d8a8?w=800&q=80",
+            "https://images.unsplash.com/photo-1582610116397-c0b7256ae4f2?w=800&q=80"
         ],
         "category": "Glamping Tent",
         "propertyType": "Glamping Tent",
@@ -2153,9 +2174,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 108,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -2198,8 +2219,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 115,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1477587458883-47145ed94245?w=800&q=80",
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1609137144813-7d9921338f24?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -2242,9 +2264,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 122,
         "images": [
+            "https://images.unsplash.com/photo-1582610116397-c0b7256ae4f2?w=800&q=80",
             "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80"
+            "https://images.unsplash.com/photo-1512343800234-882532367801?w=800&q=80"
         ],
         "category": "Beach Bungalow",
         "propertyType": "Beach Bungalow",
@@ -2287,9 +2309,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 129,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1582610116397-c0b7256ae4f2?w=800&q=80",
+            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+            "https://images.unsplash.com/photo-1512343800234-882532367801?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -2333,8 +2355,8 @@ properties_db = json.loads(r'''[
         "reviewCount": 136,
         "images": [
             "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80"
+            "https://images.unsplash.com/photo-1512343800234-882532367801?w=800&q=80",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80"
         ],
         "category": "Beach Bungalow",
         "propertyType": "Beach Bungalow",
@@ -2377,8 +2399,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 143,
         "images": [
-            "https://images.unsplash.com/photo-1513836279014-a89e7a99ae05?w=800&q=80",
-            "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80"
+            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",
+            "https://images.unsplash.com/photo-1512343800234-882532367801?w=800&q=80",
+            "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80"
         ],
         "category": "Jungle Treehouse",
         "propertyType": "Jungle Treehouse",
@@ -2421,9 +2444,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 150,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -2466,8 +2489,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 157,
         "images": [
-            "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=800&q=80",
-            "https://images.unsplash.com/photo-1528183429752-a97d0bf99404?w=800&q=80"
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800&q=80"
         ],
         "category": "Homestay",
         "propertyType": "Homestay",
@@ -2510,9 +2534,9 @@ properties_db = json.loads(r'''[
         "rating": 4.8,
         "reviewCount": 164,
         "images": [
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80",
-            "https://images.unsplash.com/photo-1542718610-a1d656a18855?w=800&q=80",
-            "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80"
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Mountain Cabin",
         "propertyType": "Mountain Cabin",
@@ -2555,9 +2579,9 @@ properties_db = json.loads(r'''[
         "rating": 4.9,
         "reviewCount": 171,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
+            "https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=800&q=80",
+            "https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",
@@ -2600,8 +2624,9 @@ properties_db = json.loads(r'''[
         "rating": 5.0,
         "reviewCount": 178,
         "images": [
-            "https://images.unsplash.com/photo-1513836279014-a89e7a99ae05?w=800&q=80",
-            "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=80"
+            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80",
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
         ],
         "category": "Jungle Treehouse",
         "propertyType": "Jungle Treehouse",
@@ -2644,9 +2669,9 @@ properties_db = json.loads(r'''[
         "rating": 4.5,
         "reviewCount": 185,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80",
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -2689,9 +2714,9 @@ properties_db = json.loads(r'''[
         "rating": 4.6,
         "reviewCount": 192,
         "images": [
-            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80",
-            "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&q=80"
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80",
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
         ],
         "category": "Forest Lodge",
         "propertyType": "Forest Lodge",
@@ -2734,9 +2759,9 @@ properties_db = json.loads(r'''[
         "rating": 4.7,
         "reviewCount": 199,
         "images": [
-            "https://images.unsplash.com/photo-1507692049790-de58290a4334?w=800&q=80",
-            "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80",
-            "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&q=80"
+            "https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800&q=80",
+            "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80",
+            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80"
         ],
         "category": "Eco Villa",
         "propertyType": "Eco Villa",

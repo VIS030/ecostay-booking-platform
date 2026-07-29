@@ -9,11 +9,52 @@ import {
   contentService,
 } from '../services/propertyService';
 
-const HERO_IMAGES = [
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=85',
-  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=85',
-  'https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1200&q=85',
-  'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=85',
+import shimla from '../assets/images/shimla.jpg';
+import rishikesh from '../assets/images/rishikesh.jpg';
+import dharmshala from '../assets/images/dharmshala.jpg';
+import kasol from '../assets/images/kasol.jpg';
+
+const HERO_SHOWCASE = [
+  {
+    id: 'shimla',
+    title: 'Heritage Alpine Chalet',
+    location: 'Shimla, Himachal Pradesh',
+    price: '$245 / night',
+    tag: '☀️ 100% Solar Powered',
+    badge: '🌿 Top Pick',
+    image: shimla,
+    search: 'Shimla',
+  },
+  {
+    id: 'rishikesh',
+    title: 'Ganges Eco River Lodge',
+    location: 'Rishikesh, Uttarakhand',
+    price: '$120 / night',
+    tag: '🌊 Riverside Sanctuary',
+    badge: '⭐ 4.9 Rating',
+    image: rishikesh,
+    search: 'Rishikesh',
+  },
+  {
+    id: 'dharmshala',
+    title: 'Dhauladhar Peace Sanctuary',
+    location: 'Dharamshala, Himachal',
+    price: '$95 / night',
+    tag: '🧘 Organic Kitchen',
+    badge: '🏔️ Mountain View',
+    image: dharmshala,
+    search: 'Dharamshala',
+  },
+  {
+    id: 'kasol',
+    title: 'Parvati Valley Pine Cabin',
+    location: 'Kasol, Himachal Pradesh',
+    price: '$110 / night',
+    tag: '🌲 Zero Plastic',
+    badge: '🔥 Cozy Fireplace',
+    image: kasol,
+    search: 'Kasol',
+  },
 ];
 
 export default function HomePage() {
@@ -57,17 +98,92 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero + Search — Airbnb style */}
-      <section className="border-b border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-950 pb-8 pt-6">
-        <div className="mx-auto max-w-[1760px] px-6 md:px-10">
-          <SearchBar variant="hero" className="mb-10" />
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
-            {HERO_IMAGES.map((src, i) => (
-              <div key={i} className={`overflow-hidden rounded-xl ${i === 0 ? 'col-span-2 row-span-2 aspect-square sm:aspect-auto sm:min-h-[320px]' : 'aspect-square'}`}>
-                <img src={src} alt="" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
-              </div>
+      {/* Hero + Search Section */}
+      <section className="border-b border-[#dddddd] dark:border-slate-800 bg-gradient-to-b from-emerald-50/40 via-white to-white dark:from-slate-900 dark:via-slate-950 dark:to-slate-950 pb-12 pt-8 transition-colors duration-200">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10">
+          
+          {/* Header Title Block */}
+          <div className="mx-auto mb-8 max-w-3xl text-center">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-900/50 bg-emerald-100/60 dark:bg-emerald-950/40 px-3.5 py-1 text-xs font-semibold text-emerald-800 dark:text-emerald-300 backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              🌿 AI-Powered Sustainable Homestays
+            </div>
+            <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-5xl lg:text-6xl leading-[1.15]">
+              Find Your <span className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">Eco Sanctuary</span> in Nature
+            </h1>
+            <p className="mt-3 text-base text-slate-600 dark:text-slate-300 sm:text-lg max-w-2xl mx-auto">
+              Discover verified solar-powered cottages, mountain retreats, and riverfront lodges across India.
+            </p>
+          </div>
+
+          {/* SearchBar */}
+          <SearchBar variant="hero" className="mb-10 shadow-lg" />
+
+          {/* Hero Showcase Image Grid */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+            {HERO_SHOWCASE.map((item, i) => (
+              <Link
+                key={item.id}
+                to={`/listings?search=${encodeURIComponent(item.search)}`}
+                className={`group relative overflow-hidden rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                  i === 0 ? 'sm:col-span-2 sm:row-span-2 min-h-[340px] sm:min-h-[420px]' : 'h-[200px] sm:h-[202px]'
+                }`}
+              >
+                {/* Background Image */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent transition-opacity duration-300 group-hover:from-slate-950/90" />
+
+                {/* Top Badge */}
+                <div className="absolute left-3.5 top-3.5 flex items-center gap-2">
+                  <span className="rounded-full bg-white/95 dark:bg-slate-900/90 backdrop-blur-md px-3 py-1 text-xs font-bold text-slate-900 dark:text-slate-100 shadow-sm border border-white/20">
+                    {item.badge}
+                  </span>
+                </div>
+
+                {/* Bottom Content Card Info */}
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5 text-white">
+                  <div className="mb-1 flex items-center gap-2">
+                    <span className="rounded-md bg-emerald-500/90 backdrop-blur-sm px-2 py-0.5 text-[11px] font-semibold tracking-wide text-white">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <h3 className={`font-bold tracking-tight text-white drop-shadow-sm ${i === 0 ? 'text-xl sm:text-2xl' : 'text-base'}`}>
+                    {item.title}
+                  </h3>
+                  <div className="mt-1 flex items-center justify-between text-xs sm:text-sm text-slate-200">
+                    <span>📍 {item.location}</span>
+                    <span className="font-semibold text-emerald-300">{item.price}</span>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
+
+          {/* Mini Stats Ribbon */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 sm:gap-12 rounded-xl border border-slate-200/60 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 px-6 py-3.5 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 shadow-sm backdrop-blur-sm">
+            <div className="flex items-center gap-2">
+              <span className="text-emerald-500">🏡</span> 150+ Verified Eco Homestays
+            </div>
+            <div className="hidden sm:block h-4 w-px bg-slate-200 dark:bg-slate-800" />
+            <div className="flex items-center gap-2">
+              <span className="text-emerald-500">🌱</span> 100% Carbon Neutral Bookings
+            </div>
+            <div className="hidden sm:block h-4 w-px bg-slate-200 dark:bg-slate-800" />
+            <div className="flex items-center gap-2">
+              <span className="text-amber-400">⭐</span> 4.97 Average Guest Rating
+            </div>
+            <div className="hidden md:block h-4 w-px bg-slate-200 dark:bg-slate-800" />
+            <div className="hidden md:flex items-center gap-2">
+              <span className="text-sky-500">🤖</span> Groq AI Travel Assistant
+            </div>
+          </div>
+
         </div>
       </section>
 

@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
+import UserAvatar from '../ui/UserAvatar';
 
 const navLinks = [
   { to: '/listings', label: 'Stays', match: (pathname) => pathname === '/listings' },
@@ -155,7 +156,7 @@ export default function Navbar() {
                   onClick={() => setMenuOpen(!menuOpen)}
                   className="flex items-center gap-2 rounded-full border border-[#dddddd] dark:border-slate-800 bg-white dark:bg-slate-850 p-1.5 hover:shadow-md transition cursor-pointer"
                 >
-                  <img src={user.avatar} alt={user.name} className="h-8 w-8 rounded-full object-cover" />
+                  <UserAvatar src={user.avatar} name={user.name} className="h-8 w-8" />
                   <span className="pr-2 text-sm font-semibold text-[#222222] dark:text-slate-200">{user.name}</span>
                 </button>
                 {menuOpen && (
@@ -267,7 +268,7 @@ export default function Navbar() {
           {user ? (
             <div className="mt-4 border-t border-[#ebebeb] dark:border-slate-800 pt-4">
               <div className="flex items-center gap-3 px-4 py-2">
-                <img src={user.avatar} alt={user.name} className="h-10 w-10 rounded-full object-cover" />
+                <UserAvatar src={user.avatar} name={user.name} className="h-10 w-10" />
                 <div>
                   <p className="text-sm font-bold text-[#222222] dark:text-white">{user.name}</p>
                   <p className="text-xs text-[#717171] dark:text-slate-400">{user.email}</p>
