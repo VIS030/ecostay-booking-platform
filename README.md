@@ -19,9 +19,9 @@ Built with a high-performance **React + Vite** frontend and a **PostgreSQL-backe
 
 ## 🌐 Live Demo
 
-- **Frontend Application (Vercel)**: [https://YOUR-VERCEL-URL](https://ecostay-booking-platform.vercel.app/)
-- **Backend API & Swagger Docs (Render)**: [https://YOUR-RENDER-URL](https://ecostay-booking-platform-1.onrender.com/)
-- **API Interactive Swagger Documentation**: [https://YOUR-RENDER-URL/docs](https://ecostay-booking-platform-1.onrender.com/docs)
+- **Frontend Application (Vercel)**: [https://ecostay-booking-platform.vercel.app/](https://ecostay-booking-platform.vercel.app/)
+- **Backend API & Swagger Docs (Render)**: [https://ecostay-booking-platform-1.onrender.com/](https://ecostay-booking-platform-1.onrender.com/)
+- **API Interactive Swagger Documentation**: [https://ecostay-booking-platform-1.onrender.com/docs](https://ecostay-booking-platform-1.onrender.com/docs)
 
 ---
 
