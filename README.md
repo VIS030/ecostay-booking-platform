@@ -1,4 +1,4 @@
-# EcoStay – AI-Powered Homestay Booking Platform 🌿🏡
+# EcoStay – AI-Powered Homestay Booking Platform 🌿🏡.
 
 [![React](https://img.shields.io/badge/React-18.x-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
