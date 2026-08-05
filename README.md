@@ -29,7 +29,9 @@ Built with a high-performance **React + Vite** frontend and a **PostgreSQL-backe
 
 | Home Page Hero & Showcase | User Dashboard & Gallery Upload |
 |:---:|:---:|
-| ![Home Page](./screenshots_placeholder/home_page.png) | ![Dashboard](./screenshots_placeholder/dashboard.png) |
+| <img width="1920" height="1080" alt="Screenshot (1447)" src="https://github.com/user-attachments/assets/eb614480-3986-45e7-808b-285e8682bcd5" />
+ | <img width="1920" height="1080" alt="Screenshot (1395)" src="https://github.com/user-attachments/assets/71ecf9b0-031a-42d1-a4ff-fc1efd7149be" />
+ |
 
 | Authentication (Login & Register) | Full CRUD Property Management |
 |:---:|:---:|
