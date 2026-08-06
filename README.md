@@ -43,7 +43,7 @@ Built with a high-performance **React + Vite** frontend and a **PostgreSQL-backe
 
 ---
 
-## 📖 Table of Contents.
+## 📖 Table of Contents
 
 - [Project Overview](#-project-overview)
 - [Key Features](#-key-features)
